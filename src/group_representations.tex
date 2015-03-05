@@ -2,10 +2,10 @@
 
 
 \begin{definition}
-	Soit $E$ un espace vectoriel sur un corps $K$, et soit $G$ un groupe.
+	Soit $E$ un espace vectoriel sur un corps $\mathbb{K}$, et soit $G$ un groupe.
 	\textbf{Une représentation de $G$ dans $E$} est une action de groupe
 	\begin{equation}
-		\GSfunction{\sigma}{G}{GL(E)}
+		\GSfunction{T}{G}{GL(E)}
 		\label{definition_representation}
 	\end{equation}
 	où $GL(E)$ est l'ensemble des automorphismes linéaires de $E$.
@@ -18,12 +18,81 @@
 	(et donc continues).
 
 	--- Les notions définies dans le chapitre\ref{chapter_group_theory} sur les
-	actions des groupe restent bien sûr valable.
+	actions des groupe restent bien sûr valables.
+
+	--- L'image de $T$, noté $T(G)$ est \textbf{une représentation de $T$}.
+
+	--- Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
+	d'utiliser trop de parenthèses.
+
 \end{remarque}
 
 \begin{definition}
-	Une représentation $\GSfunction{\sigma}{G}{GL(E)}$ de $G$ dans $E$ est dite
+	Une représentation $\GSfunction{T}{G}{GL(E)}$ de $G$ dans $E$ est dite
 	\textbf{finie} si $E$ est de dimension finie. Si $E$ n'est pas de dimension
-	finie, on dit que $\sigma$ est \textbf{une représentation infinie}.
+	finie, on dit que $T$ est \textbf{une représentation infinie}.
 \end{definition}
 
+En physique, on s'intéresse particulièrement aux représentations finies, et le
+corps de base est $\complex$. La plupart des propositions et théorèmes sont
+valables quelque soit le corps, et quelque soit la dimension.
+Lorsque nous sommes en face de cas particuliers, la distinction sera faite.
+
+On notera par $\GSrepr{G}{E}$ l'ensemble des représentations de $G$ dans $E$,
+$\GSreprf{G}{E}$ les représentations finies, et $\GSrepri{G}{E}$ les
+représentations infinies.
+
+\begin{definition}
+	Soit $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
+	vectoriel sur $K$.
+
+	Soit $T \in \GSrepr{G}{E}$
+
+	On dit que $V$ est \textbf{invariant pour $T$} si
+	\begin{equation}
+		\forall g \in G, \, T_{g}(V) \subseteq V
+		\label{definition_invariant_subspace}
+	\end{equation}
+\end{definition}
+
+\begin{proposition}
+	Soit $T \in \GSrepr{G}{E}$.
+	Alors les assertions suivantes sont équivalentes:
+	\begin{enumerate}
+		\item $T$ est dégénérée.
+		\item il existe un sous groupe normal non trivial $H$ de $G$ tel que
+			toute représentation $S \in \GSrepr{G/H}{E}$ est dégénérée.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{corollary}
+	Soit $G$ un groupe simple. Alors toute représentation $T \in \GSrepr{G}{E}$
+	est fidèle.
+\end{corollary}
+
+\begin{definition}
+	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{F}$.
+	On dit que \textbf{$S$ et $T$} sont équivalentes s'il existe un isomorphisme
+	$A$ de $E$ dans $F$ tel que:
+	\begin{equation}
+		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
+	\end{equation}
+	De manière équivalente, on a $A \circ S(g) \circ A^{-1} = T(g)$.
+\end{definition}
+
+\begin{definition}
+	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
+	On définit le caractère de $T$ comme la fonction:
+	\begin{equation}
+		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
+	\end{equation}
+\end{definition}
+
+\begin{proposition}
+	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
+	$T$ ont le même caractère.
+\end{proposition}

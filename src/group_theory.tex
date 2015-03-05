@@ -20,6 +20,11 @@
 	\end{equation}
 \end{definition}
 
+\begin{definition}
+	Un groupe $G$ est dit \textbf{simple} si ses seuls sous-groupes normaux sont
+	triviaux (ie $\left\{ 1_{G} \right\}$ ou $G$).
+\end{definition}
+
 \begin{definition} [Action de groupe]
 	Soit $G$ un groupe et $E$ un ensemble quelconque (sans structure
 	algébrique). Soit $S_{E}$ l'ensemble des permutations sur $E$.
@@ -37,5 +42,24 @@
 \begin{definition} [Action fidèle]
 	Soit $\sigma$ une action de groupe de $G$ dans $S_{E}$.
 	$\sigma$ est \textbf{fidèle} si $\sigma$ est injective, ie $\ker{\sigma} =
-	\left\{ 0_{G} \right\}$
+	\left\{ 1_{G} \right\}$
+
+	Dans le cas contraire, $\sigma$ est dite \textbf{dégénérée}.
 \end{definition}
+
+\begin{definition}
+	\label{definition_direct_sum}
+	Soit $G$ un groupe et $H_{1}$ et $H_{2}$ deux sous-groupes de $G$.
+	On dit que $G$ est \textbf{en somme directe} avec $H_{1}$ et $H_{2}$ si:
+	\begin{equation}
+		\forall g \in G, \exists! h_{1} \in H_{1}, \exists!h_{2} \in H_{2}, \,
+		g = h_{1}h_{2}
+	\end{equation}
+	et
+	\begin{equation}
+		H_{1} \inter H_{2} = \left\{ 1_{G} \right\}
+	\end{equation}
+\end{definition}
+
+La définition \ref{definition_direct_sum} peut être généralisée à un nombre fini
+de sous groupes.

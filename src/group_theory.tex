@@ -1,0 +1,41 @@
+\chapter{Théorie des groupes}
+\label{chapter_group_theory}
+
+\section{Définitions}
+
+\begin{definition}
+	Soit $G$ un groupe, et $H$ un sous groupe de $G$.
+	$H$ est \textbf{un sous groupe normal} ou \textbf{un sous groupe invariant}
+	si:
+	\begin{equation}
+		\forall g \in G, gH = Hg.
+		\label{definition_normal_subgroup}
+	\end{equation}
+
+	De manière équivalente, $H$ est un sous groupe normal si $H$ est invariant
+	par conjugaison (d'où le nom de sous groupe invariant), c'est-à-dire:
+	\begin{equation}
+		\forall g \in G, gHg^{-1} = H.
+		\label{definition_normal_subgroup2}
+	\end{equation}
+\end{definition}
+
+\begin{definition} [Action de groupe]
+	Soit $G$ un groupe et $E$ un ensemble quelconque (sans structure
+	algébrique). Soit $S_{E}$ l'ensemble des permutations sur $E$.
+
+	Soit
+	\begin{equation}
+		\GSfunction{\sigma}{G}{S_{E}}
+		\label{definition_group_action}
+	\end{equation}
+
+	$\sigma$ est \textbf{une action de $G$ dans $S_{E}$} si $\sigma$ est un
+	morphisme de groupe entre $G$ et $S_{E}$.
+\end{definition}
+
+\begin{definition} [Action fidèle]
+	Soit $\sigma$ une action de groupe de $G$ dans $S_{E}$.
+	$\sigma$ est \textbf{fidèle} si $\sigma$ est injective, ie $\ker{\sigma} =
+	\left\{ 0_{G} \right\}$
+\end{definition}

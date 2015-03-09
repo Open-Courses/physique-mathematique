@@ -1,6 +1,6 @@
 \chapter{Théorie des représentations des groupes}
 
-
+\section{Représentation : définition}
 \begin{definition}
 	Soit $E$ un espace vectoriel sur un corps $\mathbb{K}$, et soit $G$ un groupe.
 	\textbf{Une représentation de $G$ dans $E$} est une action de groupe
@@ -21,10 +21,10 @@
 	actions des groupe restent bien sûr valables.
 
 	--- L'image de $T$, noté $T(G)$ est \textbf{une représentation de $T$}.
+	C'est également \textbf{un sous-groupe} de $GL(E)$ !
 
 	--- Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
 	d'utiliser trop de parenthèses.
-
 \end{remarque}
 
 \begin{definition}
@@ -42,18 +42,19 @@ On notera par $\GSrepr{G}{E}$ l'ensemble des représentations de $G$ dans $E$,
 $\GSreprf{G}{E}$ les représentations finies, et $\GSrepri{G}{E}$ les
 représentations infinies.
 
-\begin{definition}
-	Soit $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
-	vectoriel sur $K$.
+Prenons $T \in \GSreprf{G}{E}$, et notons $(\ket{e_{1}}, \cdots, \ket{e_{n}})$
+une base de $E$ ($E$ est de dimension finie car $T$ est une représentation
+finie).
 
-	Soit $T \in \GSrepr{G}{E}$
+Pour $g \in G$, on a $T(g)$ qui peut être représentée par une matrice $n x n$.
+Cette matrice sera notée $D(g)$.
 
-	On dit que $V$ est \textbf{invariant pour $T$} si
-	\begin{equation}
-		\forall g \in G, \, T_{g}(V) \subseteq V
-		\label{definition_invariant_subspace}
-	\end{equation}
-\end{definition}
+On a alors
+\begin{equation}
+	T(g)(\ket{e_{i}}) = D(g)^{j}_{i} \ket{e_{j}}
+	\footnote{On utilise la convention d'Einstein}
+\end{equation}
+
 
 \begin{proposition}
 	Soit $T \in \GSrepr{G}{E}$.
@@ -74,6 +75,42 @@ représentations infinies.
 	est fidèle.
 \end{corollary}
 
+\begin{proof}
+
+\end{proof}
+
+\section{Sous-espace invariant et représentation irréductible}
+
+\begin{definition} [Sous espace invariant]
+	Soit $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
+	vectoriel sur $K$.
+
+	Soit $T \in \GSrepr{G}{E}$
+
+	On dit que $V$ est \textbf{invariant pour $T$} si
+	\begin{equation}
+		\forall g \in G, \, T_{g}(V) \subseteq V
+		\label{definition_invariant_subspace}
+	\end{equation}
+\end{definition}
+
+\begin{proposition}
+	$\left\{ O_{E} \right\}$ et $E$ sont des espaces invariants. On les appelle
+	les espaces invariants \textbf{triviaux}.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{definition} [Représentation irréductible]
+	Soit $T \in \GSrepr{G}{E}$. On dit que $T$ est \textbf{irréductible} s'il
+	n'admet que des sous-espaces invariant triviaux. S'il existe un sous-espace
+	invariant non-trivial, $T$ est dit \textbf{réductible}.
+\end{definition}
+
+\section{Représentations équivalentes}
+
 \begin{definition}
 	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{F}$.
 	On dit que \textbf{$S$ et $T$} sont équivalentes s'il existe un isomorphisme
@@ -82,7 +119,15 @@ représentations infinies.
 		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
 	\end{equation}
 	De manière équivalente, on a $A \circ S(g) \circ A^{-1} = T(g)$.
+	
+	On peut également dire que $T$ est un conjugué de $S$. On peut donc dire que
+	les représentations équivalentes d'une représentation donnée sont ses
+	conjugués.
 \end{definition}
+
+De cette manière, on \textit{classe} les représentations de $G$ dans $E$ car la
+relation 'être équivalentes' pour deux représentations est une relation
+d'équivalence. On parlera de \textbf{classe de représentation}.
 
 \begin{definition}
 	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
@@ -90,9 +135,107 @@ représentations infinies.
 	\begin{equation}
 		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
 	\end{equation}
+
+	où $\GSfunction{Tr}{GL(E)}{\complex}$ est la trace.
 \end{definition}
 
 \begin{proposition}
 	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
-	$T$ ont le même caractère.
+	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
+	classes de représentation.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+
+\section{Représentation dans les espaces de Hilbert}
+
+Prenons maintenant le cas où $T \in \GSrepr{G}{\Hilbert}$ où $\Hilbert$ est un
+espace de Hilbert.
+On peut alors définir les opérateurs unitaires qui sont les opérateurs $U$ tel
+que $U^{*}$, l'opérateur adjoint, est égale à $U^{-1}$.
+
+Les représentations unitaires jouent un rôle important. En effet, ce sont des
+isométries
+
+\begin{definition}
+	Soit $T \in \GSrepr{G}{\Hilbert}$. On dit que $T$ est \textbf{une
+	représentation unitaire} si pour tout élément $g$ de $G$, $T(g)$ est unitaire.
+\end{definition}
+
+Rappelons que dans un espace de Hilbert, on peut définir l'orthogonal d'un
+sous-espace vectoriel. Etant donné $V$ un sous-espace vectoriel de $\Hilbert$,
+on définit $\GSortho{V}$. On a alors $V$ et $\GSortho{V}$ qui sont en somme
+directe ie $\Hilbert = V \oplus \GSortho{V}$. On dit que $\GSortho{V}$ est le
+complémentaire orthogonal.
+
+On va alors définir un nouveau de type de représentation:
+
+
+\begin{definition}
+	Soit $T \in \GSreprf{G}{\Hilbert}$ et soit $V$ un sous-espace invariant de
+	$T$.
+	On dit que $T$ est \textbf{complètement réductible ou décomposable} si
+	$\GSortho{V}$ est également invariant.
+\end{definition}
+
+Le nom de décomposable se rapporte à la représentation matricielle de $T$. En
+effet, dans ce cas $D(g)$ est décomposable en deux sous-matrices.
+
+%Ajouter la représentation matricielle.
+
+Donnons quelques représentation décomposables.
+
+\begin{proposition}
+	Soit $T \in \GSreprf{G}{\Hilbert}$ qui est réductible. Alors $T$ est
+	complètement réductible.
+\end{proposition}
+
+\begin{proof}
+	Comme $T$ est réductible, il existe un sous-espace invariant non trivial.
+	Notons le $V$.
+	Nous voulons alors montrer que $\GSortho{V}$ est également invariant pour
+	$T$. On aura alors que $T$ est complètement réductible.
+\end{proof}
+
+\begin{proposition}
+	Soit $T \in \GSreprf{G}{\Hilbert}$. Alors $T$ est équivalente à une
+	représentation unitaire.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+Cette proposition nous informe sur les classes des représentations \textit{d'un groupe
+fini dans un espace de Hilbert}. Nous pouvons toujours nous concentrer sur les
+représentations unitaires.
+
+\section{Représentation de somme directe}
+
+\begin{definition}
+	Soit $V$ et $\GSortho{V}$ son complémentaire orthogonal dans $\Hilbert$.
+	Supposons qu'on ait une représentation $T \in \GSreprf{G}{\Hilbert}$ tel que
+	$V$ et $\GSortho{V}$ sont invariants sur $T$.
+
+	Posons $T_{1}(g) = T(g)_{|V}$ et $T_{2}(g) = T(g)_{|\GSortho{V}}$
+	On dit alors que $T$ est \textbf{somme directe} de $T_{1}$ et $T_{2}$ et on
+	note $T = T_{1} \oplus T_{2}$.
+\end{definition}
+
+\section{Lemme de Schur}
+
+\begin{proposition} [Lemme de Shur 1]
+	\label{shur_lemma_1}
+	Soit $T \in \GSrepr{G}{\Hilbert}$ irréductible.
+	Soit $\GSfunction{A}{\Hilbert}{\Hilbert}$
+	tel que $A \in \GScontinueEndo{\Hilbert}$ et
+
+	\begin{equation}
+		\forall g \in G, \, A \circ T(g) = T(g) \circ A.
+	\end{equation}
+
+	Alors $A = \lambda Id_{E}$.
 \end{proposition}

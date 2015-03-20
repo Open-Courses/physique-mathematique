@@ -114,7 +114,7 @@ On a alors
 \begin{definition}
 	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{F}$.
 	On dit que \textbf{$S$ et $T$} sont équivalentes s'il existe un isomorphisme
-	$A$ de $E$ dans $F$ tel que:
+	$A$ de $E$ dans $F$ ($A \in Isom(E, F)$) tel que:
 	\begin{equation}
 		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
 	\end{equation}
@@ -125,9 +125,10 @@ On a alors
 	conjugués.
 \end{definition}
 
-De cette manière, on \textit{classe} les représentations de $G$ dans $E$ car la
+De cette manière, on \textit{classe} les représentations de $G$ car la
 relation 'être équivalentes' pour deux représentations est une relation
 d'équivalence. On parlera de \textbf{classe de représentation}.
+Dans le suite, nous nous intéressons surtout au cas où $E = F$.
 
 \begin{definition}
 	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
@@ -237,5 +238,16 @@ représentations unitaires.
 		\forall g \in G, \, A \circ T(g) = T(g) \circ A.
 	\end{equation}
 
-	Alors $A = \lambda Id_{E}$.
+	Alors $A = \lambda Id_{\Hilbert}$.
+
+	En d'autre terme, deux représentations équivalentes différent d'une
+	translation.
+	% A reformuler et donner une interprétation.
 \end{proposition}
+
+\section{Orthonormalité et relations de complétude des matrices de
+représentations irréductibles}
+
+Nous nous plaçons toujours dans l'étude des représentation dans un espace de
+Hilbert $\Hilbert$.
+

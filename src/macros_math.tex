@@ -1,24 +1,30 @@
 \usepackage{amsmath}
 
+%-------------------------------------------------------------------------------
 \newcommand{\naturel}{\mathbb{N}}
 \newcommand{\integer}{\mathbb{Z}}
 \newcommand{\rational}{\mathbb{Q}}
 \renewcommand{\real}{\mathbb{R}} %Already defined in physics package
 \newcommand{\complex}{\mathbb{C}}
+%-------------------------------------------------------------------------------
 
 
 %Logical
 \def\implies{\Rightarrow}
 \def\equiv{\Leftrightarrow}
+%-------------------------------------------------------------------------------
 
 %Set theory
 \def\union{\cup} %Union
 \def\inter{\cap} %Intersection
 \newcommand{\comp}[1]{#1^{c}} %Complementary
+\def\cartprod{\cross}
+%-------------------------------------------------------------------------------
 
 %Topology
 \def\interior{\mathring}
 \def\adh{\overline}
+%-------------------------------------------------------------------------------
 
 \def\Ldeux{\mathcal{L}^{2}}
 \def\Ldeuxstar{(\mathcal{L}^{2})^{*}}
@@ -49,6 +55,7 @@
 \newcommand{\GSsum}[4]{\displaystyle \sum_{#1 = #2}^{#3} #4}
 
 \newcommand{\GSintervalCC}[2]{\left[#1, #2\right]}
+%-------------------------------------------------------------------------------
 
 %Analysis :
 
@@ -96,6 +103,7 @@
 
 %\GScontinueHomo
 \newcommand{\GScontinueHomo}[2]{\mathcal{L}(#1, #2)}
+%-------------------------------------------------------------------------------
 
 %Model theory
 
@@ -126,14 +134,19 @@
 
 %Elementary equivalent structures
 \newcommand{\GSelemEquivStructure}[3]{#2 \equiv_{#1} #3}
+%-------------------------------------------------------------------------------
 
 %Hilbert space
-
 \def\Hilbert{\mathcal{H}}
 \newcommand{\GSortho}[1]{#1^{\perp}}
+%-------------------------------------------------------------------------------
 
 %Group representions
-
 \newcommand{\GSrepr}[2]{Repr(#1, #2)}
 \newcommand{\GSreprf}[2]{Repr_{f}(#1, #2)}
 \newcommand{\GSrepri}[2]{Repr_{i}(#1, #2)}
+%-------------------------------------------------------------------------------
+
+% Group theory
+
+\newcommand{\ordergroup}[1]{|#1|}

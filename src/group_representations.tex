@@ -190,8 +190,8 @@ effet, dans ce cas $D(g)$ est décomposable en deux sous-matrices.
 Donnons quelques représentation décomposables.
 
 \begin{proposition}
-	Soit $T \in \GSreprf{G}{\Hilbert}$ qui est réductible. Alors $T$ est
-	complètement réductible.
+	Soit $T \in \GSreprf{G}{\Hilbert}$ unitaire qui est réductible. Alors $T$
+	est complètement réductible.
 \end{proposition}
 
 \begin{proof}
@@ -226,6 +226,22 @@ représentations unitaires.
 	note $T = T_{1} \oplus T_{2}$.
 \end{definition}
 
+
+\begin{theorem}
+	Toute représentation est somme directe de représentation irréductible.
+\end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+Ce théorème nous dit donc que nous pouvons toujours décomposer une
+représentation, et que s'ils ont connait les représentations irréductibles, nous
+connaissons la représentation initiale.
+
+Cela nous permet également de montrer que les matrices des représentations sont
+formés à partir de blocs (avec un changement de base si nécessaire).
+
 \section{Lemme de Schur}
 
 \begin{proposition} [Lemme de Shur 1]
@@ -251,3 +267,24 @@ représentations irréductibles}
 Nous nous plaçons toujours dans l'étude des représentation dans un espace de
 Hilbert $\Hilbert$.
 
+
+
+\section{Sous groupe commutatif}
+
+Donnons tout d'abord une conséquence du lemme de Schur \ref{shur_lemma_1}.
+
+\begin{proposition}
+	Soit $G$ un groupe commutatif.
+	Soit $T \in \GSrepr{G}{V}$. Alors $V$ est de dimension 1.
+\end{proposition}
+
+Nous sommes souvent intéressés par les représentations irréductibles d'un groupe
+$G$. La proposition suivante va nous permettre de donner un critère pour
+éliminer certaines représentations qui ne sont pas irréductibles.
+
+\begin{proposition}
+	Soient $G$ un groupe, et $H$ un sous groupe abélien. 
+	Soit $T \in \GSrepr{G}{V}$.
+	Alors $V$ est de dimension inférieure ou égale à
+	$\frac{\ordergroup{G}}{\ordergroup{H}}$.
+\end{proposition}

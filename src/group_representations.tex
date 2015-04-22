@@ -15,7 +15,7 @@
 	--- On note aussi parfois $GL(E)$ par $Isom(E)$. La notation $GL(E)$ fait le
 	lien avec l'isomorphisme qui existent en dimension finie entre l'espace
 	vectoriel des matrices carrées inversibles et les automorphismes linéaires
-	(et donc continues).
+	(et continues car dimension finie).
 
 	--- Les notions définies dans le chapitre\ref{chapter_group_theory} sur les
 	actions des groupe restent bien sûr valables.
@@ -31,6 +31,8 @@
 	Une représentation $\GSfunction{T}{G}{GL(E)}$ de $G$ dans $E$ est dite
 	\textbf{finie} si $E$ est de dimension finie. Si $E$ n'est pas de dimension
 	finie, on dit que $T$ est \textbf{une représentation infinie}.
+
+	La dimension de $T(G)$ est appelé \textbf{le degré de la représentation}.
 \end{definition}
 
 En physique, on s'intéresse particulièrement aux représentations finies, et le
@@ -46,7 +48,8 @@ Prenons $T \in \GSreprf{G}{E}$, et notons $(\ket{e_{1}}, \cdots, \ket{e_{n}})$
 une base de $E$ ($E$ est de dimension finie car $T$ est une représentation
 finie).
 
-Pour $g \in G$, on a $T(g)$ qui peut être représentée par une matrice $n x n$.
+Pour $g \in G$, on a $T(g)$ qui peut être représentée par une matrice $n
+\cartprod n$.
 Cette matrice sera notée $D(g)$.
 
 On a alors
@@ -82,8 +85,8 @@ On a alors
 \section{Sous-espace invariant et représentation irréductible}
 
 \begin{definition} [Sous espace invariant]
-	Soit $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
-	vectoriel sur $K$.
+	Soient $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
+	vectoriel de $E$.
 
 	Soit $T \in \GSrepr{G}{E}$
 
@@ -100,7 +103,7 @@ On a alors
 \end{proposition}
 
 \begin{proof}
-	
+
 \end{proof}
 
 \begin{definition} [Représentation irréductible]
@@ -113,13 +116,13 @@ On a alors
 
 \begin{definition}
 	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{F}$.
-	On dit que \textbf{$S$ et $T$} sont équivalentes s'il existe un isomorphisme
-	$A$ de $E$ dans $F$ ($A \in Isom(E, F)$) tel que:
+	On dit que \textbf{$S$ et $T$ sont équivalentes} s'il existe un isomorphisme
+	linéaire continue $A$ de $E$ dans $F$ ($A \in Isom(E, F)$) tel que:
 	\begin{equation}
 		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
 	\end{equation}
 	De manière équivalente, on a $A \circ S(g) \circ A^{-1} = T(g)$.
-	
+
 	On peut également dire que $T$ est un conjugué de $S$. On peut donc dire que
 	les représentations équivalentes d'une représentation donnée sont ses
 	conjugués.
@@ -137,7 +140,7 @@ Dans le suite, nous nous intéressons surtout au cas où $E = F$.
 		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
 	\end{equation}
 
-	où $\GSfunction{Tr}{GL(E)}{\complex}$ est la trace.
+	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
 \end{definition}
 
 \begin{proposition}
@@ -147,7 +150,7 @@ Dans le suite, nous nous intéressons surtout au cas où $E = F$.
 \end{proposition}
 
 \begin{proof}
-	
+
 \end{proof}
 
 
@@ -207,7 +210,7 @@ Donnons quelques représentation décomposables.
 \end{proposition}
 
 \begin{proof}
-	
+
 \end{proof}
 
 Cette proposition nous informe sur les classes des représentations \textit{d'un groupe
@@ -232,7 +235,7 @@ représentations unitaires.
 \end{theorem}
 
 \begin{proof}
-	
+
 \end{proof}
 
 Ce théorème nous dit donc que nous pouvons toujours décomposer une
@@ -283,7 +286,7 @@ $G$. La proposition suivante va nous permettre de donner un critère pour
 éliminer certaines représentations qui ne sont pas irréductibles.
 
 \begin{proposition}
-	Soient $G$ un groupe, et $H$ un sous groupe abélien. 
+	Soient $G$ un groupe, et $H$ un sous groupe abélien.
 	Soit $T \in \GSrepr{G}{V}$.
 	Alors $V$ est de dimension inférieure ou égale à
 	$\frac{\ordergroup{G}}{\ordergroup{H}}$.

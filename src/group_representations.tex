@@ -2,12 +2,15 @@
 
 \section{Représentation : définition}
 \begin{definition}
-	Soit $E$ un espace vectoriel sur un corps $\mathbb{K}$, et soit $G$ un groupe.
-	\textbf{Une représentation de $G$ dans $E$} est une action de groupe
+	Soit $E$ un espace vectoriel normé sur un corps $\mathbb{K}$, et soit $G$ un groupe.
+	\textbf{Une représentation de $G$ dans $E$} est un couple $(T, E)$ où $T$
+	est une action de groupe
+
 	\begin{equation}
 		\GSfunction{T}{G}{GL(E)}
 		\label{definition_representation}
 	\end{equation}
+
 	où $GL(E)$ est l'ensemble des automorphismes linéaires de $E$.
 \end{definition}
 
@@ -20,8 +23,10 @@
 	--- Les notions définies dans le chapitre\ref{chapter_group_theory} sur les
 	actions des groupe restent bien sûr valables.
 
-	--- L'image de $T$, noté $T(G)$ est \textbf{une représentation de $T$}.
-	C'est également \textbf{un sous-groupe} de $GL(E)$ !
+	--- L'image de $T$, noté $T(G)$ est \textbf{une représentation de $G$}.
+	C'est également \textbf{un sous-groupe} de $GL(E)$ ! On parlera aussi de
+	représentation de $G$ quand on parlera du couple $(T, E)$, où même de $T$
+	tout simplement.
 
 	--- Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
 	d'utiliser trop de parenthèses.
@@ -58,6 +63,21 @@ On a alors
 	\footnote{On utilise la convention d'Einstein}
 \end{equation}
 
+Prenons comme exemple $\mathbb{K} = \complex$, et prenons une représentation $T
+\in \GSreprf{G}{\complex^{*}}$ où $G$ est un groupe fini.
+Alors $T(g)^{n} = 1_{\complex}$, donc l'image de $T$ est les racines de l'unité.
+On appelle $T$ \textbf{la représentation unité}.
+
+%Prenons maintenant un groupe $G$ d'ordre fini $g$, et un espace vectoriel $E$ de
+%dimension $g$. Soit $(e_{1}, \cdots, e_{g})$ une base de $E$. Numérotons les
+%élements $g$ de $G$ par des indices $i$. On peut alors créer l'application:
+
+%\begin{align}
+	%\GSfunction{T}{G}{GL(E)} : g_{i} \rightarrow
+	%T_{e_{i}} 	& : E \rightarrow E \\
+				%& : e_{j} \rightarrow e_{i + j}
+%\end{align}
+%Cette représentation est appelée \textbf{la représentation régulière de $G$}.
 
 \begin{proposition}
 	Soit $T \in \GSrepr{G}{E}$.
@@ -75,17 +95,19 @@ On a alors
 
 \begin{corollary}
 	Soit $G$ un groupe simple. Alors toute représentation $T \in \GSrepr{G}{E}$
-	est fidèle.
+	non nulle est fidèle.
 \end{corollary}
 
 \begin{proof}
-
+	Si $T$ n'est pas fidèle, alors $G$ possède un noyau non vide. Comme $T$ est
+	non nulle, alors $\ker{T} \neq G$, et donc il existe un sous-groupe normal
+	non trivial. Or, $G$ est simple.
 \end{proof}
 
 \section{Sous-espace invariant et représentation irréductible}
 
 \begin{definition} [Sous espace invariant]
-	Soient $G$ un groupe, $E$ un espace vectoriel sur $K$, et $V$ un sous-espace
+	Soient $G$ un groupe, $E$ un espace vectoriel sur $\mathbb{K}$, et $V$ un sous-espace
 	vectoriel de $E$.
 
 	Soit $T \in \GSrepr{G}{E}$
@@ -106,18 +128,76 @@ On a alors
 
 \end{proof}
 
+\begin{proposition}
+	Soit $T \in \GSrepr{G}{E}$. Soit $V$ un sous-espace vectoriel de $E$
+	invariant pour $T$.
+
+	Alors la fonction:
+
+	\begin{equation}
+		T^{V} : G \rightarrow GL(V) : g \rightarrow T(g)_{|V}
+	\end{equation}
+
+	est une représentation de $G$ dans $V$.
+\end{proposition}
+
+\begin{definition}
+	Reprenons les mêmes notations qu'à la proposition précédente.
+	On dit alors que $T^{V}$ est \textbf{une sous-représentation de $T$}.
+\end{definition}
+
+\begin{proposition}
+	Soit $T \in \GSrepr{G}{E}$. Soit $W$ un sous-espace vectoriel de $E$
+	invariant sous $T$. Alors il existe un supplémentaire de $W$, noté $W'$,
+	invariant sous $T$.
+\end{proposition}
+
+En particulier, on a donc $E = W \oplus W'$, et l'étude de la représentation $T$
+se résume à étudier la représentation $T^{W}$ et $T^{W'}$. On note $T = T^{W}
+\oplus T^{W'}$ et on dit que $T$ est somme directe de $T^{W}$ et $T^{W'}$.
+
+Nous pouvons alors itérer le processus sur $T^{W}$ et $T^{W'}$ en cherchant des
+espaces invariants, jusqu'à ne plus trouver que des espaces invariants triviaux.
+
+Cela nous amène à définir la notion de représentation irréductible.
+
 \begin{definition} [Représentation irréductible]
 	Soit $T \in \GSrepr{G}{E}$. On dit que $T$ est \textbf{irréductible} s'il
 	n'admet que des sous-espaces invariant triviaux. S'il existe un sous-espace
 	invariant non-trivial, $T$ est dit \textbf{réductible}.
 \end{definition}
 
+\begin{exercice}
+	Soit $T$ une rerésentation d'un groupe $G$ de degré 1. Alors $T$ est
+	irréductible.
+\end{exercice}
+
+Précédemment, nous avons écrit $T$ en somme directe de deux autres
+représentations $T^{W}$ et $T^{W'}$. Ces deux dernières n'étaient pas nécessairement irréductible,
+mais nous pouvons réitérer le processus sur $T^{W}$ et $T^{W'}$ en étudiant les
+espaces invariants.
+
+Nous obtenons alors un théorème intéressant:
+
+\begin{proposition}
+	\label{prop:decomposition_somme_directe}
+	Soit $T \in \GSrepr{G}{E}$. Alors $T$ est somme directe de représentation
+	irréductible.
+\end{proposition}
+
+La proposition \ref{prop:decomposition_somme_directe} nous informe qu'étudier
+les représentations irréductibles suffit à étudier toutes les représentations.
+Il suffira de \textit{réduire} notre représentation.
+
 \section{Représentations équivalentes}
 
+La définition suivante peut être généralisée à deux espaces vectoriels
+différents $E$ et $F$, et pas seulement à un même espace $E$.
+
 \begin{definition}
-	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{F}$.
+	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{E}$.
 	On dit que \textbf{$S$ et $T$ sont équivalentes} s'il existe un isomorphisme
-	linéaire continue $A$ de $E$ dans $F$ ($A \in Isom(E, F)$) tel que:
+	linéaire continue $A$ de $E$ dans $E$ ($A \in Isom(E)$) tel que:
 	\begin{equation}
 		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
 	\end{equation}
@@ -131,30 +211,15 @@ On a alors
 De cette manière, on \textit{classe} les représentations de $G$ car la
 relation 'être équivalentes' pour deux représentations est une relation
 d'équivalence. On parlera de \textbf{classe de représentation}.
-Dans le suite, nous nous intéressons surtout au cas où $E = F$.
-
-\begin{definition}
-	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
-	On définit le caractère de $T$ comme la fonction:
-	\begin{equation}
-		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
-	\end{equation}
-
-	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
-\end{definition}
-
-\begin{proposition}
-	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
-	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
-	classes de représentation.
-\end{proposition}
-
-\begin{proof}
-
-\end{proof}
 
 
 \section{Représentation dans les espaces de Hilbert}
+
+Nous supposerons maintenant que nous sommes dans le cas $\mathbb{K} = \complex$
+ou $\mathbb{K} = \real$. Une généralisation est à envisager.
+
+Depuis le début, nous nous sommes uniquement intéressés au cas où $E$ est un
+espace vectoriel normé quelconque.
 
 Prenons maintenant le cas où $T \in \GSrepr{G}{\Hilbert}$ où $\Hilbert$ est un
 espace de Hilbert.
@@ -162,7 +227,11 @@ On peut alors définir les opérateurs unitaires qui sont les opérateurs $U$ te
 que $U^{*}$, l'opérateur adjoint, est égale à $U^{-1}$.
 
 Les représentations unitaires jouent un rôle important. En effet, ce sont des
-isométries
+isométries qui sont les isomorphismes gardant en plus les distances dans les
+espaces de Banach. Les isométries transportent également l'information du
+produit scalaire. Les opérateurs unitaires conservent les symétries des
+problèmes car ils ont la propriété de conserver les angles, les distances et le
+produit scalaire.
 
 \begin{definition}
 	Soit $T \in \GSrepr{G}{\Hilbert}$. On dit que $T$ est \textbf{une
@@ -170,16 +239,16 @@ isométries
 \end{definition}
 
 Rappelons que dans un espace de Hilbert, on peut définir l'orthogonal d'un
-sous-espace vectoriel. Etant donné $V$ un sous-espace vectoriel de $\Hilbert$,
-on définit $\GSortho{V}$. On a alors $V$ et $\GSortho{V}$ qui sont en somme
+sous-espace vectoriel. Etant donné $V$ un sous-espace vectoriel fermé de $\Hilbert$,
+on définit $\GSortho{V}$ comme l'ensemble des vecteurs perpandiculaires avec
+tous les vecteurs $V$. On a alors $V$ et $\GSortho{V}$ qui sont en somme
 directe ie $\Hilbert = V \oplus \GSortho{V}$. On dit que $\GSortho{V}$ est le
 complémentaire orthogonal.
 
 On va alors définir un nouveau de type de représentation:
 
-
 \begin{definition}
-	Soit $T \in \GSreprf{G}{\Hilbert}$ et soit $V$ un sous-espace invariant de
+	Soit $T \in \GSrepr{G}{\Hilbert}$ et soit $V$ un sous-espace invariant de
 	$T$.
 	On dit que $T$ est \textbf{complètement réductible ou décomposable} si
 	$\GSortho{V}$ est également invariant.
@@ -193,7 +262,7 @@ effet, dans ce cas $D(g)$ est décomposable en deux sous-matrices.
 Donnons quelques représentation décomposables.
 
 \begin{proposition}
-	Soit $T \in \GSreprf{G}{\Hilbert}$ unitaire qui est réductible. Alors $T$
+	Soit $T \in \GSrepr{G}{\Hilbert}$ unitaire qui est réductible. Alors $T$
 	est complètement réductible.
 \end{proposition}
 
@@ -205,7 +274,7 @@ Donnons quelques représentation décomposables.
 \end{proof}
 
 \begin{proposition}
-	Soit $T \in \GSreprf{G}{\Hilbert}$. Alors $T$ est équivalente à une
+	Soit $T \in \GSrepr{G}{\Hilbert}$ où $G$ est fini. Alors $T$ est équivalente à une
 	représentation unitaire.
 \end{proposition}
 
@@ -217,38 +286,10 @@ Cette proposition nous informe sur les classes des représentations \textit{d'un
 fini dans un espace de Hilbert}. Nous pouvons toujours nous concentrer sur les
 représentations unitaires.
 
-\section{Représentation de somme directe}
-
-\begin{definition}
-	Soit $V$ et $\GSortho{V}$ son complémentaire orthogonal dans $\Hilbert$.
-	Supposons qu'on ait une représentation $T \in \GSreprf{G}{\Hilbert}$ tel que
-	$V$ et $\GSortho{V}$ sont invariants sur $T$.
-
-	Posons $T_{1}(g) = T(g)_{|V}$ et $T_{2}(g) = T(g)_{|\GSortho{V}}$
-	On dit alors que $T$ est \textbf{somme directe} de $T_{1}$ et $T_{2}$ et on
-	note $T = T_{1} \oplus T_{2}$.
-\end{definition}
-
-
-\begin{theorem}
-	Toute représentation est somme directe de représentation irréductible.
-\end{theorem}
-
-\begin{proof}
-
-\end{proof}
-
-Ce théorème nous dit donc que nous pouvons toujours décomposer une
-représentation, et que s'ils ont connait les représentations irréductibles, nous
-connaissons la représentation initiale.
-
-Cela nous permet également de montrer que les matrices des représentations sont
-formés à partir de blocs (avec un changement de base si nécessaire).
-
 \section{Lemme de Schur}
 
 \begin{proposition} [Lemme de Shur 1]
-	\label{shur_lemma_1}
+	\label{lemma:shur_lemma_1}
 	Soit $T \in \GSrepr{G}{\Hilbert}$ irréductible.
 	Soit $\GSfunction{A}{\Hilbert}{\Hilbert}$
 	tel que $A \in \GScontinueEndo{\Hilbert}$ et
@@ -257,12 +298,53 @@ formés à partir de blocs (avec un changement de base si nécessaire).
 		\forall g \in G, \, A \circ T(g) = T(g) \circ A.
 	\end{equation}
 
-	Alors $A = \lambda Id_{\Hilbert}$.
+	Alors $A = \lambda Id_{\Hilbert}$ ou $A = 0_{\Hilbert}$.
 
-	En d'autre terme, deux représentations équivalentes différent d'une
-	translation.
+	En d'autres termes, si un opérateur $A : \Hilbert \rightarrow \Hilbert$
+	commute avec tous les opérateurs $T(g)$, $g$ parcourant $G$, alors il est
+	obligé que $A$ soit un opérateur de translation.
 	% A reformuler et donner une interprétation.
 \end{proposition}
+
+Nous avons une conséquence direct du \ref{lemma:shur_lemma_1}.
+
+\begin{corollary}
+	Soit $T \in \GSreprf{G}{\Hilbert}$ une représentation irréductible où $G$
+	est un groupe commutatif. Alors $\Hilbert$ est de dimension $1$, et donc
+	$\Hilbert = \real$ ou $\Hilbert = \complex$.
+\end{corollary}
+
+Ce corollaire nous montre que les seules représentations irréductibles d'un
+groupe commutatif sont de degré 1. C'est-à-dire que lorsque nous étudions les
+représentations irréductibles d'un groupe abélien, nous étudions des
+sous-groupes (finis) de $\real$ ou $\complex$.
+
+En particulier, les seuls sous-groupes finis de $\complex$ sont les groupes des
+racines de l'unité. Étudier les représentation irréductibles de $G$ sur
+$\complex$ revient à étudier les sous-groupes abéliens de $G$, et donc en
+particulier les sous-groupes cycliques.
+
+\begin{proposition} [Lemme de Shur 2]
+	\label{lemma:shur_lemma_2}
+	Soient $\Hilbert$ et $\mathcal{K}$ deux espaces de Hilbert, et $G$ un groupe.
+	Soient $S \in \GSrepr{G}{\Hilbert}$ et $T \in \GSrepr{G}{\mathcal{K}}$ deux
+	représentations de $G$.
+
+	Soit $A \in \GScontinueHomo{\Hilbert}{\mathcal{K}}$ tel que:
+
+	\begin{equation*}
+		\forall g \in G, A \circ S(g) = T(g) \circ A
+	\end{equation*}
+
+	Alors, soit $A = O_{\Hilbert, \mathcal{K}}$, soit $A = \lambda Id_{\Hilbert,
+		\mathcal{K}}$.
+\end{proposition}
+
+\begin{proof}
+	Remarquons que dans le deuxième cas, nous avons comme conséquences que
+	$\Hilbert$ est isomorphe à $\mathcal{K}$, et que $S$ et $T$ sont
+	équivalentes.
+\end{proof}
 
 \section{Orthonormalité et relations de complétude des matrices de
 représentations irréductibles}
@@ -274,15 +356,11 @@ Hilbert $\Hilbert$.
 
 \section{Sous groupe commutatif}
 
-Donnons tout d'abord une conséquence du lemme de Schur \ref{shur_lemma_1}.
+Nous avons remarqué, grace à \ref{prop:decomposition_somme_directe}, que le
+simple fait d'étudier les représentations irréductibles nous permettait de
+connaitre toutes les représentations.
 
-\begin{proposition}
-	Soit $G$ un groupe commutatif.
-	Soit $T \in \GSrepr{G}{V}$. Alors $V$ est de dimension 1.
-\end{proposition}
-
-Nous sommes souvent intéressés par les représentations irréductibles d'un groupe
-$G$. La proposition suivante va nous permettre de donner un critère pour
+La proposition suivante va nous permettre de donner un critère pour
 éliminer certaines représentations qui ne sont pas irréductibles.
 
 \begin{proposition}
@@ -291,3 +369,48 @@ $G$. La proposition suivante va nous permettre de donner un critère pour
 	Alors $V$ est de dimension inférieure ou égale à
 	$\frac{\ordergroup{G}}{\ordergroup{H}}$.
 \end{proposition}
+
+\section{Caractère d'une représentation finie}
+
+\begin{definition}
+	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
+	On définit le caractère de $T$ comme la fonction:
+	\begin{equation}
+		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
+	\end{equation}
+
+	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
+\end{definition}
+
+On a pour chaque représentation que $\chi(1_{G}) = n$ où $n$ est la dimension de
+$E$.
+On a également que $\chi(h g h^{-1}) = \chi(g)$.
+
+Dans le cas où $\mathbb{K} = \complex$, on obtient la proposition suivante, laissée en exercice.
+
+\begin{proposition}
+	$\chi(s^{-1}) = \conjuguate{\chi(s)}$
+\end{proposition}
+
+En particulier, $\chi$ est constante ssi $T$ est la représentation triviale (ie $\forall g \in G$, $T(g) =
+Id_{E}$).
+
+\begin{proposition}
+	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
+	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
+	classes de représentation.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+Prenons maintenant un espace vectoriel $E$, et deux sous espaces vectoriels
+$V_{1}$ et $V_{2}$ qui sont en somme directe.
+Soient $T_{1} \in \GSreprf{G}{V_{1}}$, et $T_{2} \in \GSreprf{G}{V_{2}}$, et
+$\chi_{1}$, $\chi_{2}$ leur caractère respectif.
+
+Construisons $T : G \rightarrow GL(V_{1} \oplus V_{2})$ tel que $T(g) = T_{1}(g)
++ T_{2}(g)$ (l'addition est vue dans $GL(E))$, et posons $\chi$ son caractère.
+
+Alors, on montre que $\chi = \chi_{1} + \chi_{2}$.

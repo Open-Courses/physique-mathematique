@@ -1,9 +1,14 @@
 \chapter{Théorie des représentations des groupes}
 
-\section{Représentation : définition}
+\section{Définitions et premières propriétés}
+
+\subsection{Représentations}
+
 \begin{definition}
-	Soit $E$ un espace vectoriel normé sur un corps $\mathbb{K}$, et soit $G$ un groupe.
-	\textbf{Une représentation de $G$ dans $E$} est un couple $(T, E)$ où $T$
+	Soit $G$ un groupe.
+
+	\textbf{Une représentation de $G$} est un couple $(T, E)$ où $E$
+	est un espace vectoriel normé et $T$
 	est une action de groupe
 
 	\begin{equation}
@@ -12,24 +17,27 @@
 	\end{equation}
 
 	où $GL(E)$ est l'ensemble des automorphismes linéaires de $E$.
+
+	Quand $E$ est donné, on parle de \textbf{représentation de $G$ dans $E$}.
 \end{definition}
 
 \begin{remarque}
-	--- On note aussi parfois $GL(E)$ par $Isom(E)$. La notation $GL(E)$ fait le
+	\begin{itemize}
+		\item On note aussi parfois $GL(E)$ par $Isom(E)$. La notation $GL(E)$ fait le
 	lien avec l'isomorphisme qui existent en dimension finie entre l'espace
 	vectoriel des matrices carrées inversibles et les automorphismes linéaires
 	(et continues car dimension finie).
 
-	--- Les notions définies dans le chapitre\ref{chapter_group_theory} sur les
+		\item Les notions définies dans le chapitre \ref{chapter_group_theory} sur les
 	actions des groupe restent bien sûr valables.
 
-	--- L'image de $T$, noté $T(G)$ est \textbf{une représentation de $G$}.
+		\item L'image de $T$, noté $T(G)$ est \textbf{une réalisation de $G$ dans $E$}.
 	C'est également \textbf{un sous-groupe} de $GL(E)$ ! On parlera aussi de
-	représentation de $G$ quand on parlera du couple $(T, E)$, où même de $T$
-	tout simplement.
+	représentation de $G$ de $T$ tout simplement.
 
-	--- Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
+		\item Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
 	d'utiliser trop de parenthèses.
+	\end{itemize}
 \end{remarque}
 
 \begin{definition}
@@ -108,7 +116,7 @@ On appelle $T$ \textbf{la représentation unité}.
 \end{proof}
 \fi
 
-\section{Sous-espace invariant et représentation irréductible}
+\subsection{Sous-espace invariant et représentation irréductible}
 
 \begin{definition} [Sous espace invariant]
 	Soient $G$ un groupe, $E$ un espace vectoriel sur $\mathbb{K}$, et $V$ un sous-espace
@@ -195,7 +203,7 @@ La proposition \ref{prop:decomposition_somme_directe} nous informe qu'étudier
 les représentations irréductibles suffit à étudier toutes les représentations.
 Il suffira de \textit{réduire} notre représentation.
 
-\section{Représentations équivalentes}
+\subsection{Représentations équivalentes}
 
 La définition suivante peut être généralisée à deux espaces vectoriels
 différents $E$ et $F$, et pas seulement à un même espace $E$.
@@ -218,6 +226,70 @@ De cette manière, on \textit{classe} les représentations de $G$ car la
 relation 'être équivalentes' pour deux représentations est une relation
 d'équivalence. On parlera de \textbf{classe de représentation}.
 
+
+\subsection{Caractère d'une représentation finie}
+
+\begin{definition}
+	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
+	On définit le caractère de $T$ comme la fonction:
+	\begin{equation}
+		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
+	\end{equation}
+
+	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
+\end{definition}
+
+On a pour chaque représentation que $\chi(1_{G}) = n$ où $n$ est la dimension de
+$E$.
+On a également que $\chi(h g h^{-1}) = \chi(g)$.
+
+Dans le cas où $\mathbb{K} = \complex$, on obtient la proposition suivante, laissée en exercice.
+
+\begin{proposition}
+	$\chi(s^{-1}) = \conjuguate{\chi(s)}$
+\end{proposition}
+
+En particulier, $\chi$ est constante ssi $T$ est la représentation triviale (ie $\forall g \in G$, $T(g) =
+Id_{E}$).
+
+\begin{proposition}
+	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
+	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
+	classes de représentation.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Prenons maintenant un espace vectoriel $E$, et deux sous espaces vectoriels
+$V_{1}$ et $V_{2}$ qui sont en somme directe.
+Soient $T_{1} \in \GSreprf{G}{V_{1}}$, et $T_{2} \in \GSreprf{G}{V_{2}}$, et
+$\chi_{1}$, $\chi_{2}$ leur caractère respectif.
+
+Construisons $T : G \rightarrow GL(V_{1} \oplus V_{2})$ tel que $T(g) = T_{1}(g)
++ T_{2}(g)$ (l'addition est vue dans $GL(E))$, et posons $\chi$ son caractère.
+
+Alors, on montre que $\chi = \chi_{1} + \chi_{2}$.
+
+
+\subsection{Sous groupe commutatif}
+
+Nous avons remarqué, grace à \ref{prop:decomposition_somme_directe}, que le
+simple fait d'étudier les représentations irréductibles nous permettait de
+connaitre toutes les représentations.
+
+La proposition suivante va nous permettre de donner un critère pour
+éliminer certaines représentations qui ne sont pas irréductibles.
+
+\begin{proposition}
+	Soient $G$ un groupe, et $H$ un sous groupe abélien.
+	Soit $T \in \GSrepr{G}{V}$.
+	Alors $V$ est de dimension inférieure ou égale à
+	$\frac{\ordergroup{G}}{\ordergroup{H}}$.
+\end{proposition}
 
 \section{Représentation dans les espaces de Hilbert}
 
@@ -296,7 +368,7 @@ Cette proposition nous informe sur les classes des représentations \textit{d'un
 fini dans un espace de Hilbert}. Nous pouvons toujours nous concentrer sur les
 représentations unitaires.
 
-\section{Lemme de Schur}
+\subsection{Lemme de Schur}
 
 \begin{proposition} [Lemme de Shur 1]
 	\label{lemma:shur_lemma_1}
@@ -358,7 +430,7 @@ particulier les sous-groupes cycliques.
 \end{proof}
 \fi
 
-\section{Orthonormalité et relations de complétude des matrices de
+\subsection{Orthonormalité et relations de complétude des matrices de
 représentations irréductibles}
 
 Nous nous plaçons toujours dans l'étude des représentation dans un espace de
@@ -366,65 +438,3 @@ Hilbert $\Hilbert$.
 
 
 
-\section{Sous groupe commutatif}
-
-Nous avons remarqué, grace à \ref{prop:decomposition_somme_directe}, que le
-simple fait d'étudier les représentations irréductibles nous permettait de
-connaitre toutes les représentations.
-
-La proposition suivante va nous permettre de donner un critère pour
-éliminer certaines représentations qui ne sont pas irréductibles.
-
-\begin{proposition}
-	Soient $G$ un groupe, et $H$ un sous groupe abélien.
-	Soit $T \in \GSrepr{G}{V}$.
-	Alors $V$ est de dimension inférieure ou égale à
-	$\frac{\ordergroup{G}}{\ordergroup{H}}$.
-\end{proposition}
-
-\section{Caractère d'une représentation finie}
-
-\begin{definition}
-	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
-	On définit le caractère de $T$ comme la fonction:
-	\begin{equation}
-		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
-	\end{equation}
-
-	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
-\end{definition}
-
-On a pour chaque représentation que $\chi(1_{G}) = n$ où $n$ est la dimension de
-$E$.
-On a également que $\chi(h g h^{-1}) = \chi(g)$.
-
-Dans le cas où $\mathbb{K} = \complex$, on obtient la proposition suivante, laissée en exercice.
-
-\begin{proposition}
-	$\chi(s^{-1}) = \conjuguate{\chi(s)}$
-\end{proposition}
-
-En particulier, $\chi$ est constante ssi $T$ est la représentation triviale (ie $\forall g \in G$, $T(g) =
-Id_{E}$).
-
-\begin{proposition}
-	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
-	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
-	classes de représentation.
-\end{proposition}
-
-\ifdefined\outputproof
-\begin{proof}
-
-\end{proof}
-\fi
-
-Prenons maintenant un espace vectoriel $E$, et deux sous espaces vectoriels
-$V_{1}$ et $V_{2}$ qui sont en somme directe.
-Soient $T_{1} \in \GSreprf{G}{V_{1}}$, et $T_{2} \in \GSreprf{G}{V_{2}}$, et
-$\chi_{1}$, $\chi_{2}$ leur caractère respectif.
-
-Construisons $T : G \rightarrow GL(V_{1} \oplus V_{2})$ tel que $T(g) = T_{1}(g)
-+ T_{2}(g)$ (l'addition est vue dans $GL(E))$, et posons $\chi$ son caractère.
-
-Alors, on montre que $\chi = \chi_{1} + \chi_{2}$.

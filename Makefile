@@ -4,12 +4,12 @@ CC		= pdflatex
 SRC		= $(NAME).tex
 
 $(NAME):
-	cd $(SRC) && $(CC) -output-directory ../ "\def\outputproof{0} \input{$(SRC)}"
-	cd $(SRC) && $(CC) -output-directory ../ "\def\outputproof{0} \input{$(SRC)}"
+	cd $(SRC_DIR) && $(CC) -output-directory ../ "\def\outputproof{0} \input{$(SRC)}"
+	cd $(SRC_DIR) && $(CC) -output-directory ../ "\def\outputproof{0} \input{$(SRC)}"
 
 noproof:
-	cd $(SRC) && $(CC) -output-directory ../ $(SRC)
-	cd $(SRC) && $(CC) -output-directory ../ $(SRC)
+	cd $(SRC_DIR) && $(CC) -output-directory ../ $(SRC)
+	cd $(SRC_DIR) && $(CC) -output-directory ../ $(SRC)
 
 zip: fclean $(NAME)
 	$(MAKE) clean

@@ -1,99 +1,184 @@
-\chapter{Théorie des représentations des groupes}
+\chapter{Représentations des groupes finis}
 
-\section{Définitions et premières propriétés}
+Dans ce chapitre, nous étudierons les représentations des groupes finis.
 
-\subsection{Représentations}
+Les représentations des groupes permettent de caractériser les groupes en
+étudiant comment ceux-ci agissent sur les espaces vectoriels normés à travers
+les automorphismes.
 
-\begin{definition}
-	Soit $G$ un groupe.
+Nous commencerons par donner des définitions générales, sans distinction sur
+l'ordre du groupe et on donnera des propositions toutes aussi générales.
+Cependant, les exemples donnés ne dépasseront pas le cas fini car nous ne
+souhaitons pas étudier d'autres cas dans ce chapitre.
 
-	\textbf{Une représentation de $G$} est un couple $(T, E)$ où $E$
-	est un espace vectoriel normé et $T$
-	est une action de groupe
+On continuera en se restreignant aux théorèmes se rapportant aux groupes finis:
+ceux-ci fourniront des résultats intéressants.
+
+En passant, on regardera un cas particulier de représentations: les
+représentations hilbertiennes complexes. Ces dernières sont souvent utilisées en
+physique.
+
+\section{Cas général}
+
+\begin{definition} [Représentation d'un groupe, support, réalisation]
+	Soit $(G, ., 1_{G})$ un groupe.
+
+	\textbf{Une représentation de $(G, ., 1_{G})$} est un couple $(E,
+	\rho)$ où $E$
+	est un espace vectoriel normé sur un corps $\mathbb{K}$ et $\rho$
+	est morphisme de groupe
 
 	\begin{equation}
-		\GSfunction{T}{G}{GL(E)}
+		\GSfunction{\rho}{(G, ., 1_{G})}{(\GSisomorphisme{E}, \circ, Id_{E})}
 		\label{definition_representation}
 	\end{equation}
 
-	où $GL(E)$ est l'ensemble des automorphismes linéaires de $E$.
+	où $(\GSisomorphisme{E}, \circ, Id_{E})$ est le groupe formé de l'ensemble
+	des automorphismes linéaires de $E$ muni de la loi de
+	composition.
 
-	Quand $E$ est donné, on parle de \textbf{représentation de $G$ dans $E$}.
+	On dit que $E$ est \textbf{le support} de la
+	représentation $(E, \rho)$.
+
+	On appelle \textbf{dimension de la représentation $(E, \rho)$} la dimension
+	de l'espace vectoriel $E$.
+
+	L'image de $\rho$, noté $\rho(G)$, est \textbf{une réalisation de $G$ dans
+		$E$}.
+	C'est également \textbf{un sous-groupe} de $(\GSisomorphisme{(E,
+		\GSnormeDef{.}{E})}, \circ, Id_{E})$.
 \end{definition}
 
-\begin{remarque}
-	\begin{itemize}
-		\item On note aussi parfois $GL(E)$ par $Isom(E)$. La notation $GL(E)$ fait le
-	lien avec l'isomorphisme qui existent en dimension finie entre l'espace
-	vectoriel des matrices carrées inversibles et les automorphismes linéaires
-	(et continues car dimension finie).
+La définition nous dit donc que
 
-		\item Les notions définies dans le chapitre \ref{chapter_group_theory} sur les
-	actions des groupe restent bien sûr valables.
-
-		\item L'image de $T$, noté $T(G)$ est \textbf{une réalisation de $G$ dans $E$}.
-	C'est également \textbf{un sous-groupe} de $GL(E)$ ! On parlera aussi de
-	représentation de $G$ de $T$ tout simplement.
-
-		\item Soit $g \in G$. On note souvent $T(g) = T_{g} \in GL(E)$ pour éviter
-	d'utiliser trop de parenthèses.
-	\end{itemize}
-\end{remarque}
-
-\begin{definition}
-	Une représentation $\GSfunction{T}{G}{GL(E)}$ de $G$ dans $E$ est dite
-	\textbf{finie} si $E$ est de dimension finie. Si $E$ n'est pas de dimension
-	finie, on dit que $T$ est \textbf{une représentation infinie}.
-
-	La dimension de $T(G)$ est appelé \textbf{le degré de la représentation}.
-\end{definition}
-
-En physique, on s'intéresse particulièrement aux représentations finies, et le
-corps de base est $\complex$. La plupart des propositions et théorèmes sont
-valables quelque soit le corps, et quelque soit la dimension.
-Lorsque nous sommes en face de cas particuliers, la distinction sera faite.
-
-On notera par $\GSrepr{G}{E}$ l'ensemble des représentations de $G$ dans $E$,
-$\GSreprf{G}{E}$ les représentations finies, et $\GSrepri{G}{E}$ les
-représentations infinies.
-
-Prenons $T \in \GSreprf{G}{E}$, et notons $(\ket{e_{1}}, \cdots, \ket{e_{n}})$
-une base de $E$ ($E$ est de dimension finie car $T$ est une représentation
-finie).
-
-Pour $g \in G$, on a $T(g)$ qui peut être représentée par une matrice $n
-\cartprod n$.
-Cette matrice sera notée $D(g)$.
-
-On a alors
 \begin{equation}
-	T(g)(\ket{e_{i}}) = D(g)^{j}_{i} \ket{e_{j}}
-	\footnote{On utilise la convention d'Einstein}
+	\forall g, g' \in G, \, \rho(g g') = \rho(g) \circ \rho(g')
+\end{equation}
+\begin{equation}
+	\forall g \in G, \, \rho(g)^{-1} = \rho(g^{-1})
+\end{equation}
+\begin{equation}
+	\rho(1_{G}) = Id_{E}
 \end{equation}
 
-Prenons comme exemple $\mathbb{K} = \complex$, et prenons une représentation $T
-\in \GSreprf{G}{\complex^{*}}$ où $G$ est un groupe fini.
-Alors $T(g)^{n} = 1_{\complex}$, donc l'image de $T$ est les racines de l'unité.
-On appelle $T$ \textbf{la représentation unité}.
+\begin{remarque}
+	\begin{enumerate}
+		\item Il n'est pas demandé que l'espace vectoriel $E$ soit normé !
+			$\GSisomorphisme{E}$ représente simplement l'ensemble des
+			applications linéaires de $E$ dans $E$ bijectives.
+		\item Soit $g \in G$. On note souvent $\rho_{g}$ à la place de $\rho(g)$
+			pour éviter d'utiliser trop de parenthèses.
+		\item Pour connaitre toute l'image de $\rho$, il suffit de connaitre
+			$\rho$ sur les générateurs de $G$.
+	\end{enumerate}
+\end{remarque}
 
-%Prenons maintenant un groupe $G$ d'ordre fini $g$, et un espace vectoriel $E$ de
-%dimension $g$. Soit $(e_{1}, \cdots, e_{g})$ une base de $E$. Numérotons les
-%élements $g$ de $G$ par des indices $i$. On peut alors créer l'application:
+Donnons quelques exemples en en construisant.
 
-%\begin{align}
-	%\GSfunction{T}{G}{GL(E)} : g_{i} \rightarrow
-	%T_{e_{i}} 	& : E \rightarrow E \\
-				%& : e_{j} \rightarrow e_{i + j}
-%\end{align}
-%Cette représentation est appelée \textbf{la représentation régulière de $G$}.
+\begin{exemple}
+	Prenons $\mathbb{K} = \complex$ et $(G, ., 1_{G})$ est un groupe fini.
+
+	On construit la représentation $(E, \rho)$ où $E = \complex$ et
+	\begin{equation}
+		\rho : (G, ., 1_{G}) \rightarrow \overbrace{(\GSisomorphisme{\complex},
+		\circ, Id_{\complex})}^{\isomorphe (\complex^{*}, ._{\complex}, 1_{\complex})} : g \rightarrow 1_{\complex}
+	\end{equation}
+	c'est-à-dire que $\rho$ est constante.
+	Cette représentation, de dimension $1$, est appelée \textbf{représentation
+	triviale}.
+\end{exemple}
+
+\begin{exemple}
+	Soit $(\permutationGroup{3}, \circ, 1_{\permutationGroup{3}})$ le groupe des permutations de l'ensemble à $3$ éléments.
+	On sait que $\permutationGroup{3} = \generatedGroup{(1 2), (1 2 3)}$
+
+	Par la remarque précédente, si nous voulons construire une représentation de
+	$(\permutationGroup{3}, \circ, 1_{\permutationGroup{3}})$, il suffit de construire une représentation des sous-groupes
+	$\generatedGroup{(1 2)}$ et $\generatedGroup{(1 2 3)}$ en conservant les
+	relations de commutations existantes entre $(1 2)$ et $(1 2 3)$.
+
+	Définissons
+	\begin{equation}
+		\rho : (\permutationGroup{3}, \circ, 1_{\permutationGroup{3}})
+		\rightarrow \overbrace{(\GSisomorphisme{\complex^{2}}, \circ,
+		Id_{\complex^{2}})}^{\isomorphe (\inversibleMatrixSpace{2}{\complex},
+		., Id_{2})}
+	\end{equation}
+		tel que
+	\begin{equation}
+		\rho(1_{\permutationGroup{3}}) =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+		\quad
+		\rho( (1 2) ) =
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix}
+		\quad
+		\rho( (1 2 3) ) =
+		\begin{pmatrix}
+			e^{\frac{2i\pi}{3}} 	&	0 \\
+			0						&	e^{\frac{4i\pi}{3}}
+		\end{pmatrix}
+	\end{equation}
+
+	Alors, $(\complex^{2}, \rho)$ est une représentation de dimension $2$ du
+	groupe $(\permutationGroup{3}, \circ, 1_{\permutationGroup{3}})$.
+\end{exemple}
+
+Donnons aussi un lemme qui sera utilisé prochainement.
+
+\begin{lemma}
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	Alors, pour tout $g \in G$,
+	\begin{align}
+		\sum_{h \in G} \rho(gh) & = \sum_{h \in G} \rho(hg) \\
+		& = \sum_{g' \in G} \rho(g')
+	\end{align}
+\end{lemma}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{definition} [Représentation induite]
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	Soit $(H, ., 1_{G})$ un sous groupe de $(G, ., 1_{G})$.
+
+	Alors, la représentation $(E, \rho)$ de $(G, ., 1_{G})$ induit
+	une représentation $(E,
+	\rho_{|H})$ de $(H, ., 1_{G})$ et $(E, \rho_{|H})$ est appelée
+	\textbf{représentation induite} de $(E, \rho)$ sur $(H,
+	., 1_{G})$.
+\end{definition}
+
+\begin{definition} [Représentation fidèle/dégénérée]
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	On dit que $(E, \rho)$ est \textbf{une représentation fidèle} si $\rho$ est
+	un morphisme injectif (ie $\ker(\rho) = \GSset{1_{G}}$). Sinon, $(E,
+	\GSnormeDef{.}{E}, \rho)$
+	est \textbf{une représentation dégénérée}.
+\end{definition}
+
+Pour nous familiariser avec la définition de représentation de groupe,
+commençons par démontrer une équivalence.
 
 \begin{proposition}
-	Soit $T \in \GSrepr{G}{E}$.
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
 	Alors les assertions suivantes sont équivalentes:
 	\begin{enumerate}
-		\item $T$ est dégénérée.
-		\item il existe un sous groupe normal non trivial $H$ de $G$ tel que
-			toute représentation $S \in \GSrepr{G/H}{E}$ est dégénérée.
+		\item $(E, \rho)$ est dégénérée.
+		\item il existe un sous groupe normal non trivial $(H, ., 1_{G})$ de $(G, ., 1_{G})$
+			tel que la représentation induite $(E, \rho_{|H})$ est fidèle.
 	\end{enumerate}
 \end{proposition}
 
@@ -104,29 +189,110 @@ On appelle $T$ \textbf{la représentation unité}.
 \fi
 
 \begin{corollary}
-	Soit $G$ un groupe simple. Alors toute représentation $T \in \GSrepr{G}{E}$
-	non nulle est fidèle.
+	Soit $(G, ., 1_{G})$ un groupe simple. Alors toute représentation $(E,
+	\rho)$ de
+	$(G, ., 1_{G})$ non nulle est fidèle.
 \end{corollary}
 
 \ifdefined\outputproof
 \begin{proof}
-	Si $T$ n'est pas fidèle, alors $G$ possède un noyau non vide. Comme $T$ est
-	non nulle, alors $\ker{T} \neq G$, et donc il existe un sous-groupe normal
-	non trivial. Or, $G$ est simple.
+
 \end{proof}
 \fi
 
-\subsection{Sous-espace invariant et représentation irréductible}
+Donnons maintenant une méthode pour construire de nouvelle représentation à
+partir d'une connue.
+La proposition suivante construit, grace aux classes d'équivalence provenant
+d'un quotient d'un groupe sur un de ses groupes normaux, une nouvelle
+représentation.
+
+Cette construction consiste à donner la même valeur pour chaque élément se
+trouvant dans la même classe d'équivalence.
+
+\begin{proposition}
+	\label{prop:build_new_repr_with_equiv_class}
+	Soit $(G, ., 1_{G})$ un groupe et soit $(H, ., 1_{H})$ un sous-groupe normal
+	de $(G, ., 1_{G})$.
+
+	Soit $(G/H, ., H)$ le groupe quotient de $(G, ., 1_{G})$ sur $(H, .,
+	1_{G})$.
+
+	Soit $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	Posons
+	\begin{equation}
+		\tau : G \rightarrow \GSisomorphisme{E}
+	\end{equation}
+	tel que
+	\begin{equation}
+		\tau(g) = \rho(\tilde{g})
+	\end{equation}
+	où $\tilde{g} \in G$ tel que $[g]_{G/H} = [\tilde{g}]_{G/H}$.
+
+	Alors, $(E, \tau)$ est une représentation de $(G, .,
+	1_{G})$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Il faut remarquer quelque chose de très essentiel dans la proposition
+précédente: plus il y a de sous-groupe normal du groupe initial, plus il y a de
+représentation. Cette remarque va jouer un rôle crucial quand nous étudierons
+les représentations irréductibles et inéquivalentes d'un groupe fini.
+
+
+\begin{definition} [Représentation finie/infinie]
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	On dit que $(E, \rho)$ est \textbf{une représentation finie} si $E$ est de dimension finie.
+	Si $E$ n'est pas de dimension finie, on dit que $(E, \rho)$ est \textbf{une
+	représentation infinie}.
+\end{definition}
+
+Dans le cas d'une représentation finie $(E, \rho)$, on a
+\begin{equation}
+	(\GSisomorphisme{E}, \circ, Id_{E})
+	\isomorphe (\inversibleMatrixSpace{n}{\mathbb{K}}, ., Id_{n})
+\end{equation}
+où
+$\inversibleMatrixSpace{n}{\mathbb{K}}$ est l'ensemble des matrices carrées $n
+\cartprod n$ de déterminant non nul et $n = dim(E)$. Les éléments $\rho(g)$ peuvent alors être
+vus comme des matrices, ce que nous avons fait dans l'exemple sur
+$(\permutationGroup{3}, \circ, 1_{\permutationGroup{3}})$.
+
+En physique, on s'intéresse particulièrement aux représentations finies, et le
+corps de base est $\complex$.
+
+Restons dans le cas fini, et prenons une base $(e_{i})_{1 \leq i \leq n}$. On
+définit les éléments de matrices $\rho_{ij}(g)$ par
+
+\begin{equation}
+	\rho(g)(e_{i}) = \rho(g)_{ij} e_{j} = \rho(g)_{i}^{j} e_{j}
+\end{equation}
+
+\subsection{Sous-espace invariant, représentation irréductible et somme directe
+de représentations}
+
+On arrive à une classe importante de réprésentation: les représentations
+irréductibles. Cette classe nous permettra de déduire des résultats sur les
+groupes finis quand nous étudierons les réprésentations à support hilbertien.
+
+Nous verrons qu'étudier cette unique classe permet d'étudier l'entièreté des
+représentations d'un groupe. En quelque sorte, elle 'génère' l'ensemble des
+représentations.
+Pour cela, on étudiera les sommes directes de représentations.
 
 \begin{definition} [Sous espace invariant]
-	Soient $G$ un groupe, $E$ un espace vectoriel sur $\mathbb{K}$, et $V$ un sous-espace
-	vectoriel de $E$.
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+	Soit $V$ un sous-espace vectoriel de $E$.
 
-	Soit $T \in \GSrepr{G}{E}$
-
-	On dit que $V$ est \textbf{invariant pour $T$} si
+	On dit que $V$ est \textbf{invariant pour $\rho$} si
 	\begin{equation}
-		\forall g \in G, \, T_{g}(V) \subseteq V
+		\forall g \in G, ., 1_{G}, \rho_{g}(V) \subseteq V
 		\label{definition_invariant_subspace}
 	\end{equation}
 \end{definition}
@@ -143,119 +309,357 @@ On appelle $T$ \textbf{la représentation unité}.
 \fi
 
 \begin{proposition}
-	Soit $T \in \GSrepr{G}{E}$. Soit $V$ un sous-espace vectoriel de $E$
-	invariant pour $T$.
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
 
-	Alors la fonction:
+	Soit $V$ un sous-espace vectoriel de $E$ invariant sous $\rho$.
 
+	Alors l'application
 	\begin{equation}
-		T^{V} : G \rightarrow GL(V) : g \rightarrow T(g)_{|V}
+		\rho^{V} : (G, ., 1_{G}) \rightarrow
+		(\GSisomorphisme{(V, \GSnormeDef{.}{V})}, \circ, Id_{V})
 	\end{equation}
-
-	est une représentation de $G$ dans $V$.
+	tel que
+	\begin{equation}
+		\rho^{V}(g) = \rho(g)_{|V}
+	\end{equation}
+	et où $\GSnormeDef{.}{V}$ est la norme $\GSnormeDef{.}{E}$ restreinte à $V$,
+	est un morphisme de groupe de $(G, ., 1_{G})$ dans $(\GSisomorphisme{(V,
+		\GSnormeDef{.}{V})}, \circ, Id_{V})$.
 \end{proposition}
 
-\begin{definition}
-	Reprenons les mêmes notations qu'à la proposition précédente.
-	On dit alors que $T^{V}$ est \textbf{une sous-représentation de $T$}.
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{definition} [Sous-représentation]
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	Soient $V$ un sous-espace vectoriel de $E$ invariant sous $\rho$, $\rho^{V}$
+	le morphisme défini précédemment.
+
+	Alors $(V, \rho^{V})$ est une représentation de $(G, .,
+	1_{G})$ et est appelée \textbf{sous-représentation de $(E, \rho)$}.
 \end{definition}
-
-\begin{proposition}
-	Soit $T \in \GSrepr{G}{E}$. Soit $W$ un sous-espace vectoriel de $E$
-	invariant sous $T$. Alors il existe un supplémentaire de $W$, noté $W'$,
-	invariant sous $T$.
-\end{proposition}
-
-En particulier, on a donc $E = W \oplus W'$, et l'étude de la représentation $T$
-se résume à étudier la représentation $T^{W}$ et $T^{W'}$. On note $T = T^{W}
-\oplus T^{W'}$ et on dit que $T$ est somme directe de $T^{W}$ et $T^{W'}$.
-
-Nous pouvons alors itérer le processus sur $T^{W}$ et $T^{W'}$ en cherchant des
-espaces invariants, jusqu'à ne plus trouver que des espaces invariants triviaux.
-
-Cela nous amène à définir la notion de représentation irréductible.
 
 \begin{definition} [Représentation irréductible]
-	Soit $T \in \GSrepr{G}{E}$. On dit que $T$ est \textbf{irréductible} s'il
-	n'admet que des sous-espaces invariant triviaux. S'il existe un sous-espace
-	invariant non-trivial, $T$ est dit \textbf{réductible}.
+	Soient $(G, ., 1_{G})$ un groupe et $(E, \rho)$ une représentation de $(G, ., 1_{G})$.
+
+	On dit que $(E, \rho)$ est \textbf{une représentation
+	irréductible} s'il
+	n'existe pas de sous-espaces invariants non-triviaux pour $\rho$. S'il
+	existe un sous-espace invariant non-trivial, on dit que $(E, \rho)$ est
+	\textbf{une représentation réductible}.
 \end{definition}
 
-\begin{exercice}
-	Soit $T$ une rerésentation d'un groupe $G$ de degré 1. Alors $T$ est
+\begin{remarque}
+	Soient $(G, ., 1_{G})$ un groupe et $E$ un espace
+	vectoriel normé.
+
+	Toute représentation $(E, \rho)$ de $(G, ., 1_{G})$ de dimension $1$ est
 	irréductible.
-\end{exercice}
+\end{remarque}
 
-Précédemment, nous avons écrit $T$ en somme directe de deux autres
-représentations $T^{W}$ et $T^{W'}$. Ces deux dernières n'étaient pas nécessairement irréductible,
-mais nous pouvons réitérer le processus sur $T^{W}$ et $T^{W'}$ en étudiant les
-espaces invariants.
-
-Nous obtenons alors un théorème intéressant:
+Donnons une caractérisation des représentations irréductibles des groupes finis.
 
 \begin{proposition}
-	\label{prop:decomposition_somme_directe}
-	Soit $T \in \GSrepr{G}{E}$. Alors $T$ est somme directe de représentation
-	irréductible.
+	\label{prop:irreductible_representation_finite_group_is_finite}
+	Soient $(G, ., 1_{G})$ un groupe \textit{fini}.
+
+	Toute représentation irréductible non nulle $(E, \rho)$ de $(G, ., 1_{G})$ est finie.
+
+	En d'autres termes, toute représentation irréductible d'un groupe fini est finie.
 \end{proposition}
 
-La proposition \ref{prop:decomposition_somme_directe} nous informe qu'étudier
-les représentations irréductibles suffit à étudier toutes les représentations.
-Il suffira de \textit{réduire} notre représentation.
+\ifdefined\outputproof
+\begin{proof}
+	Soit $x \in E$ tel qu'il existe $g \in G$, $\rho_{g}(x) \neq 0_{E}$.
+	Posons $\ordergroup{G} = n$ et $G = \GSset{g_{1}, \cdots, g_{n}}$. Prenons
+	l'espace vectoriel de $E$ engendré par $\GSset{\rho_{g_{1}}(x) \cdots,
+	\rho_{g_{n}}(x)}$ et notons le $V$. Remarquons que $V$ est dimension finie
+	et $V \neq \GSset{0_{E}}$
+	car il existe $i \in \GSset{1, \cdots, n}$ tel que $\rho_{g_{i}}(x) \neq
+	0_{E}$. Montrons maintenant que $V$ est invariant
+	sous $G$.
+
+	Soit $g \in G$. Soit $y \in V$ tel que
+	\begin{equation}
+		y = \sum_{i = 1}^{n} \overbrace{a_{i}}^{\in \mathbb{K}}
+		\underbrace{\rho_{g_{i}}(x)}_{\in V}
+	\end{equation}
+
+	On a
+	\begin{align}
+		\rho_{g}(y) & = \rho_{g}(\sum_{i = 1}^{n} a_{i} \rho_{g_{i}}(x)) \\
+		& = \sum_{i = 1}^{n} a_{i} \rho_{g}(\rho_{g_{i}}(x)) \\
+		& = \sum_{i = 1}^{n} a_{i} (\rho_{g} \circ \rho_{g_{i}})(x) \\
+		& = \sum _{i = 1}^{n} a_{i} \rho(g . g_{i})(x) \text{ (car $\rho$ est un
+		morphisme)}\\
+		& = \sum_{i = 1}^{n} a_{i} \underbrace{\rho(h_{i})(x)}_{\in V}
+	\end{align}
+
+	La dernière ligne utilise la définition de $V$.
+
+	Donc $V$ est bien invariant sous $\rho$.
+
+	Comme $(E, \rho)$ est une représentation irréductible, $V = \GSset{0_{E}}$
+	ou $V = E$. Comme $V$ est non nul, $V = E$.
+
+	On en déduit que $E$ est de dimension finie. D'où, $(E,
+	\rho)$ est une représentation finie.
+\end{proof}
+\fi
+
+Nous arrivons à la somme directe de représentations: un concept très important.
+
+Prenons deux espaces vectoriels $E_{1}$ et $E_{2}$ et construisons le produit
+cartésien $E_{1} \cartprod E_{2}$ de $E_{1}$ et $E_{2}$.
+
+Sur cet ensemble, il est alors possible de poser une structure d'espace
+vectoriel, dépendant des structures $E_{1}$ et $E_{2}$: celle-ci se fait
+composante par composante. Cet espace vectoriel est noté $E_{1} \oplus E_{2}$
+et est appelé \textbf{somme directe de $E_{1}$ et $E_{2}$}.
+
+\begin{definition} [Somme directe de représentations]
+	Soit $(G, ., 1_{G})$ un groupe et soient $(E_{1}, \rho_{1})$
+	et $(E_{2}, \rho_{2})$
+	deux représentations de $(G, ., 1_{G})$.
+
+	On définit le morphisme de groupe \footnote{Le lecteur est invité à
+	démontrer que ç'en est un.}
+	\begin{equation}
+		\rho_{1} \oplus \rho_{2} : (G, ., 1_{G}) \rightarrow (\GSisomorphisme{E_{1}
+		\oplus E_{2}}, \circ, Id_{E_{1} \oplus E_{2}})
+	\end{equation}
+	tel que, pour tout $g \in G$ et pour tout $(x_{1}, x_{2}) \in E_{1} \cartprod
+	E_{2}$
+	\begin{equation}
+		(\rho_{1} \oplus \rho_{2})(g)(\overbrace{x_{1} + x_{2}}^{\in E_{1} \oplus E_{2}}) =
+		\underbrace{(\overbrace{\rho_{1}(g) (x_{1})}^{\in E_{1}},
+		\overbrace{\rho_{2}(g)(x_{2})}^{\in E_{2}})}_{\in E_{1} \oplus E_{2}}
+	\end{equation}.
+
+	On obtient alors une représentations $(E_{1} \oplus E_{2},
+	\GSnormeDef{.}{\oplus}, \rho_{1} \oplus
+	\rho_{2})$ de $(G, ., 1_{G})$. On dit que $(E_{1} \oplus E_{2}, \rho_{1} \oplus \rho_{2})$ est \textbf{la somme
+		directe de $(E_{1}, \rho_{1})$ et $(E_{2},
+		\rho_{2})$}.
+
+	De manière générale, on construit la représentation
+	\begin{equation}
+		(E_{1} \oplus \cdots \oplus E_{m}, \rho_{1} \oplus \cdots \oplus \rho_{m})
+	\end{equation}
+\end{definition}
+
+Dans le cas où $(E_{1}, \rho_{1})$ et $(E_{2}, \rho_{2})$ sont des
+représentations finies, on peut se représenter $\rho_{1} \oplus \rho_{2}$
+matriciellement, où pour tout $g \in G$, on a
+\begin{equation}
+	(\rho_{1} \oplus \rho_{2})(g) =
+	\begin{pmatrix}
+		\rho_{1}(g)	& 0 \\
+		0			& \rho_{2}(g)
+	\end{pmatrix}
+\end{equation}
+
+Prenons le cas où $E_{1} = E_{2}$ (notons alors $E$ l'espace vectoriel),
+$\GSnormeDef{.}{1} = \GSnormeDef{.}{2}$ (notons alors $\GSnorme{.}$ la norme sur
+$E$) et $\rho_{1} = \rho_{2}$ (notons alors $\rho$ le morphisme).
+
+On construit alors la représentation $(E \oplus E, \rho
+\oplus \rho)$.
+La notation $\rho \oplus \rho$ est alors simplifié en $2 \rho$ et dans le cas
+des représentations finies, on se retrouve avec la représentation matricielle
+suivante
+
+\begin{equation}
+	(2 \rho)(g) =
+	\begin{pmatrix}
+		\rho(g)		& 0 \\
+		0			& \rho(g)
+	\end{pmatrix}
+\end{equation}
+
+Si on travaille avec $n$ identiques espaces vectoriels
+(resp. normes et morphismes), on note la somme directe $\rho \oplus \cdots
+\oplus \rho$ par $n \rho$.
+
+De manière générale, prenons le cas où le support $E$ est
+
+\begin{equation}
+	\overbrace{E_{1} \oplus \cdots E_{1}}^{m_{1} \text{ fois}} \oplus \cdots
+	\oplus \overbrace{E_{n} \oplus \cdots \oplus E_{n}}^{m_{n} \text{ fois}}
+\end{equation}
+
+et que nous avons les représentations $(E_{1}, \rho_{1}),
+\cdots, (E_{n}, \rho_{n})$.
+
+On note alors la représentation
+
+\begin{equation}
+	\overbrace{\rho_{1} \oplus \cdots \rho_{1}}^{m_{1} \text{ fois}} \oplus \cdots
+	\oplus \overbrace{\rho_{n} \oplus \cdots \oplus \rho_{n}}^{m_{n} \text{ fois}}
+\end{equation}
+
+par
+
+\begin{equation}
+	\oplus_{i = 1}^{n} m_{i} \rho_{i}
+\end{equation}
+
+Dans le cas fini, la représentation matricielle de $\rho := \oplus_{i = 1}^{n}
+m_{i} \rho_{i}$ est
+
+\begin{equation}
+	(\oplus_{i = 1}^{n} \rho_{i})(g) =
+	\begin{pmatrix}
+		\rho_{1}(g)		& 0			& 0			&	0			& 0				&
+		0 & 0 \\
+		0				& \cdots 	& 0				&	0		& 0				&
+		0 & 0 \\
+		0				& 0 		& \rho_{1}(g)	&	0		& 0				&
+		0 & 0 \\
+		0				& 0			& 0				&	\cdots	& 0				&
+		0				& 0 \\
+		0				& 0			& 0				&	0		& \rho_{n}(g)	&
+		0				&	0 \\
+		0				& 0			& 0				&	0		& 0				&
+		\cdots 			& 0 \\
+		0				& 0			& 0				&	0		& 0				&
+		0				& \rho_{n}(g) \\
+	\end{pmatrix}
+\end{equation}
+
+Nous verrons que cette représentation est très importante dans la section sur la
+représentation régulière.
+
+\begin{definition}
+	Soit $(G, ., 1_{G})$ un groupe et soit $(E, \rho)$
+	une représentation de $(G, ., 1_{G})$.
+
+	On dit que $(E, \rho)$ est \textbf{complètement
+	réductible ou décomposable} s'il existe des représentations irréductibles $(V_{1},
+	\rho_{1}), \cdots, (V_{m}, \rho_{m})$ tel que
+	\begin{equation}
+		\rho = \rho_{1} \oplus \cdots \oplus \rho_{m}
+	\end{equation}
+	et
+	\begin{equation}
+		E = V_{1} \oplus \cdots \oplus V_{m}
+	\end{equation}
+\end{definition}
+
+Le nom de décomposable se rapporte à la représentation matricielle de $\rho$.
+En effet, si $E$ est de dimension finie, on peut représenter $\rho$ de la
+manière suivante:
+
+\begin{equation}
+	\rho(g) =
+	\begin{pmatrix}
+		\rho_{1}(g)	& 0				&	0			& 0			&	0 \\
+		0			& \rho_{2}(g)	&	0			& 0			&	0 \\
+		0			& 0				&	\rho_{3}(g)	& 0			&	0 \\
+		0			& 0				&	0			& \cdots	&	0 \\
+		0			& 0				&	0			& 0			&	\rho_{m}(g) \\
+	\end{pmatrix}
+\end{equation}
+
+où chaque $\rho_{i}(g)$ est une matrice carrée de taille $dim(V_{i})$.
 
 \subsection{Représentations équivalentes}
 
-La définition suivante peut être généralisée à deux espaces vectoriels
-différents $E$ et $F$, et pas seulement à un même espace $E$.
+% TODO: Donner la motivation des représentations équivalentes.
 
 \begin{definition}
-	Soit $S \in \GSrepr{G}{E}$ et $T \in \GSrepr{G}{E}$.
-	On dit que \textbf{$S$ et $T$ sont équivalentes} s'il existe un isomorphisme
-	linéaire continue $A$ de $E$ dans $E$ ($A \in Isom(E)$) tel que:
-	\begin{equation}
-		\forall g \in G, \, A \circ S(g) = T(g) \circ A.
-	\end{equation}
-	De manière équivalente, on a $A \circ S(g) \circ A^{-1} = T(g)$.
+	Soit $(G, ., 1_{G})$ un groupe et soient deux représentations $(E, \rho)$,
+	$(F, \tau)$ de $(G, ., 1_{G})$.
 
-	On peut également dire que $T$ est un conjugué de $S$. On peut donc dire que
-	les représentations équivalentes d'une représentation donnée sont ses
-	conjugués.
+	On dit que \textbf{$(E, \rho)$ et $(F, \tau)$ sont (des représentations)
+	équivalentes} s'il existe un isomorphisme linéaire
+	\begin{equation}
+		A : E \rightarrow F
+	\end{equation}
+	c'est-à-dire
+	\begin{equation}
+		A \in \GSisomorphisme{E; F}
+	\end{equation}
+	tel que pour tout $g \in G$,
+
+	\begin{equation}
+		\underbrace{\overbrace{A}^{E \rightarrow F} \circ \overbrace{\rho(g)}^{E \rightarrow
+		E}}_{E \rightarrow F} = \underbrace{\overbrace{\tau(g)}^{F \rightarrow F} \circ
+		\overbrace{A}^{E \rightarrow F}}_{E \rightarrow F}
+	\end{equation}
+	De manière équivalente, on a
+	\begin{equation}
+		A \circ \rho(g) \circ A^{-1} = \tau(g)
+	\end{equation}
+
+	On peut également dire que $\tau(g)$ est un conjugué de $\rho$.
+	On peut donc dire que les représentations équivalentes d'une représentation
+	donnée sont ses conjugués.
+
+	Deux représentations qui ne sont pas équivalentes sont dites
+	\textbf{inéquivalentes}.
 \end{definition}
 
-De cette manière, on \textit{classe} les représentations de $G$ car la
+De cette manière, on \textit{classe} les représentations de $(G, ., 1_{G})$ car la
 relation 'être équivalentes' pour deux représentations est une relation
-d'équivalence. On parlera de \textbf{classe de représentation}.
+d'équivalence sur l'ensemble des représentations du groupe $(G, ., 1_{G})$. On
+parlera de \textbf{classe de représentation}.
 
-
-\subsection{Caractère d'une représentation finie}
-
-\begin{definition}
-	Soit $T \in \GSreprf{G}{E}$ une représention \textbf{finie}.
-	On définit le caractère de $T$ comme la fonction:
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe et posons
 	\begin{equation}
-		\GSfunction{\chi}{G}{\mathbb{K}} : g \rightarrow Tr(T_{g})
+		\GSrepr{(G, ., 1_{G})}
+	\end{equation}
+	l'ensemble des représentations de $(G, ., 1_{G})$.
+
+	La relation binaire $\sim$ définie sur $\GSrepr{(G, ., 1_{G})}$ tel que
+	\begin{equation}
+		(E, \rho) \sim (F, \tau)
+	\end{equation}
+	si $(E, \rho)$ est une représentation équivalente à $(F, \tau)$
+	est une relation d'équivalence.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	La réflexivité est évidente. La transitivité résulte de la composition des
+	applications linéaire continues et la symétrie provient de l'application
+	inverse.
+\end{proof}
+\fi
+
+A partir de maintenant, nous allons nous concentrer sur un représentant de
+chaque classe d'équivalences, les propriétés que nous verrons étant stables dans
+chaque classe \footnote{Le lecteur sera bien sûr invité à le démontrer.}.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe et soient $(E_{1},
+	\rho)$, $(E_{2}, \tau)$ deux représentations de $(G, ., 1_{G})$.
+
+	Soit
+	\begin{equation}
+		u : E_{1} \rightarrow E_{2}
+	\end{equation}
+	une application linéaire.
+
+	Posons
+	\begin{equation}
+		T_{u} : E_{1} \rightarrow E_{2}
+	\end{equation}
+	tel que
+	\begin{equation}
+		T_{u}(x) = \frac{1}{\ordergroup{G}} \sum_{g \in G} (\tau(g) \circ u \circ
+		\rho(g^{-1})) (x)
 	\end{equation}
 
-	où $\GSfunction{Tr}{GL(E)}{\mathbb{K}}$ est la trace.
-\end{definition}
-
-On a pour chaque représentation que $\chi(1_{G}) = n$ où $n$ est la dimension de
-$E$.
-On a également que $\chi(h g h^{-1}) = \chi(g)$.
-
-Dans le cas où $\mathbb{K} = \complex$, on obtient la proposition suivante, laissée en exercice.
-
-\begin{proposition}
-	$\chi(s^{-1}) = \conjuguate{\chi(s)}$
-\end{proposition}
-
-En particulier, $\chi$ est constante ssi $T$ est la représentation triviale (ie $\forall g \in G$, $T(g) =
-Id_{E}$).
-
-\begin{proposition}
-	Soit $S, T$ deux représentations finies de $G$ équivalentes. Alors $S$ et
-	$T$ ont le même caractère. C'est-à-dire que la trace est stable dans les
-	classes de représentation.
+	Alors,
+	\begin{equation}
+		\tau \circ T_{u} = T_{u} \circ \rho
+	\end{equation}
 \end{proposition}
 
 \ifdefined\outputproof
@@ -264,98 +668,40 @@ Id_{E}$).
 \end{proof}
 \fi
 
-Prenons maintenant un espace vectoriel $E$, et deux sous espaces vectoriels
-$V_{1}$ et $V_{2}$ qui sont en somme directe.
-Soient $T_{1} \in \GSreprf{G}{V_{1}}$, et $T_{2} \in \GSreprf{G}{V_{2}}$, et
-$\chi_{1}$, $\chi_{2}$ leur caractère respectif.
+%\subsection{Sous groupe commutatif}
 
-Construisons $T : G \rightarrow GL(V_{1} \oplus V_{2})$ tel que $T(g) = T_{1}(g)
-+ T_{2}(g)$ (l'addition est vue dans $GL(E))$, et posons $\chi$ son caractère.
+%Nous avons remarqué, grace à \ref{prop:decomposition_somme_directe}, que le
+%simple fait d'étudier les représentations irréductibles nous permettait de
+%connaitre toutes les représentations.
 
-Alors, on montre que $\chi = \chi_{1} + \chi_{2}$.
+%La proposition suivante va nous permettre de donner un critère pour
+%éliminer certaines représentations qui ne sont pas irréductibles.
 
+%\begin{proposition}
+	%Soient $G$ un groupe, et $H$ un sous groupe abélien.
+	%Soit $T \in \GSrepr{G}{V}$.
+	%Alors $V$ est de dimension inférieure ou égale à
+	%$\frac{\ordergroup{G}}{\ordergroup{H}}$.
+%\end{proposition}
 
-\subsection{Sous groupe commutatif}
-
-Nous avons remarqué, grace à \ref{prop:decomposition_somme_directe}, que le
-simple fait d'étudier les représentations irréductibles nous permettait de
-connaitre toutes les représentations.
-
-La proposition suivante va nous permettre de donner un critère pour
-éliminer certaines représentations qui ne sont pas irréductibles.
-
-\begin{proposition}
-	Soient $G$ un groupe, et $H$ un sous groupe abélien.
-	Soit $T \in \GSrepr{G}{V}$.
-	Alors $V$ est de dimension inférieure ou égale à
-	$\frac{\ordergroup{G}}{\ordergroup{H}}$.
-\end{proposition}
-
-\section{Représentation dans les espaces de Hilbert}
-
-Nous supposerons maintenant que nous sommes dans le cas $\mathbb{K} = \complex$
-ou $\mathbb{K} = \real$. Une généralisation est à envisager.
-
-Depuis le début, nous nous sommes uniquement intéressés au cas où $E$ est un
-espace vectoriel normé quelconque.
-
-Prenons maintenant le cas où $T \in \GSrepr{G}{\Hilbert}$ où $\Hilbert$ est un
-espace de Hilbert.
-On peut alors définir les opérateurs unitaires qui sont les opérateurs $U$ tel
-que $U^{*}$, l'opérateur adjoint, est égale à $U^{-1}$.
-
-Les représentations unitaires jouent un rôle important. En effet, ce sont des
-isométries qui sont les isomorphismes gardant en plus les distances dans les
-espaces de Banach. Les isométries transportent également l'information du
-produit scalaire. Les opérateurs unitaires conservent les symétries des
-problèmes car ils ont la propriété de conserver les angles, les distances et le
-produit scalaire.
-
-\begin{definition}
-	Soit $T \in \GSrepr{G}{\Hilbert}$. On dit que $T$ est \textbf{une
-	représentation unitaire} si pour tout élément $g$ de $G$, $T(g)$ est unitaire.
-\end{definition}
-
-Rappelons que dans un espace de Hilbert, on peut définir l'orthogonal d'un
-sous-espace vectoriel. Etant donné $V$ un sous-espace vectoriel fermé de $\Hilbert$,
-on définit $\GSortho{V}$ comme l'ensemble des vecteurs perpandiculaires avec
-tous les vecteurs $V$. On a alors $V$ et $\GSortho{V}$ qui sont en somme
-directe ie $\Hilbert = V \oplus \GSortho{V}$. On dit que $\GSortho{V}$ est le
-complémentaire orthogonal.
-
-On va alors définir un nouveau de type de représentation:
-
-\begin{definition}
-	Soit $T \in \GSrepr{G}{\Hilbert}$ et soit $V$ un sous-espace invariant de
-	$T$.
-	On dit que $T$ est \textbf{complètement réductible ou décomposable} si
-	$\GSortho{V}$ est également invariant.
-\end{definition}
-
-Le nom de décomposable se rapporte à la représentation matricielle de $T$. En
-effet, dans ce cas $D(g)$ est décomposable en deux sous-matrices.
-
-%Ajouter la représentation matricielle.
-
-Donnons quelques représentation décomposables.
+Donnons quelques faits qui nous serviront lorsque nous étudierons le lemme de
+Shur (\ref{lemma:shur_lemma_1}).
 
 \begin{proposition}
-	Soit $T \in \GSrepr{G}{\Hilbert}$ unitaire qui est réductible. Alors $T$
-	est complètement réductible.
-\end{proposition}
+	\label{prop:kernel_and_rank_invariant}
+	Soit $(G, ., 1_{G})$ un groupe et soient $(E_{1},
+	\rho)$,
+	$(E_{2}, \tau)$
+	deux représentations de $(G, ., 1_{G})$.
 
-\ifdefined\outputproof
-\begin{proof}
-	Comme $T$ est réductible, il existe un sous-espace invariant non trivial.
-	Notons le $V$.
-	Nous voulons alors montrer que $\GSortho{V}$ est également invariant pour
-	$T$. On aura alors que $T$ est complètement réductible.
-\end{proof}
-\fi
+	Soit $\GSfunction{A}{E_{2}}{E_{1}}$ une application linéaire tel
+	que
+	\begin{equation}
+		\forall g \in G, \rho(g) \circ A = A \circ \tau(g)
+	\end{equation}
 
-\begin{proposition}
-	Soit $T \in \GSrepr{G}{\Hilbert}$ où $G$ est fini. Alors $T$ est équivalente à une
-	représentation unitaire.
+	Alors $\ker{(A)}$ est invariant pour $\tau$ et $Im(A)$ est invariant sous
+	$\rho$.
 \end{proposition}
 
 \ifdefined\outputproof
@@ -364,77 +710,1230 @@ Donnons quelques représentation décomposables.
 \end{proof}
 \fi
 
-Cette proposition nous informe sur les classes des représentations \textit{d'un groupe
-fini dans un espace de Hilbert}. Nous pouvons toujours nous concentrer sur les
-représentations unitaires.
+\begin{proposition}
+	\label{prop:commute_eigenspace}
+	Soit $(G, ., 1_{G})$ un groupe et soit $(E, \rho)$ une
+	représentation de $(G, ., 1_{G})$.
+
+	Soit $A : E \rightarrow E$ une application linéaire tel que
+	\begin{equation}
+		\forall g \in G, \rho(g) \circ A = A \circ \rho(g)
+	\end{equation}
+	ie $A$ commute avec $\rho(g)$ pour tout $g \in G$.
+
+	Soit $V$ un sous-espace propre de $A$.
+
+	Alors $V$ est sous-espace invariant pour $\rho$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
 
 \subsection{Lemme de Schur}
 
+Nous supposerons maintenant que nous sommes dans le cas $\mathbb{K} = \complex$.
+
 \begin{proposition} [Lemme de Shur 1]
 	\label{lemma:shur_lemma_1}
-	Soit $T \in \GSrepr{G}{\Hilbert}$ irréductible.
-	Soit $\GSfunction{A}{\Hilbert}{\Hilbert}$
-	tel que $A \in \GScontinueEndo{\Hilbert}$ et
+	Soit $(G, ., 1_{G})$ un groupe et soient $(E_{1}, \rho)$,
+	$(E_{2}, \tau)$
+	deux représentations irréductibles de $(G, ., 1_{G})$.
+
+	Soit $A : E_{2} \rightarrow E_{1}$ une application linéaire tel
+	que
 
 	\begin{equation}
-		\forall g \in G, \, A \circ T(g) = T(g) \circ A.
+		\label{eq:interwining}
+		\forall g \in G, \rho(g) \circ A = A \circ \tau(g)
 	\end{equation}
 
-	Alors $A = \lambda Id_{\Hilbert}$ ou $A = 0_{\Hilbert}$.
+	Alors:
+	\begin{enumerate}
+		\item Si $(E_{1},
+	\rho)$ et
+	$(E_{2}, \tau)$ sont inéquivalentes,
+	alors $A = 0$.
 
-	En d'autres termes, si un opérateur $A : \Hilbert \rightarrow \Hilbert$
-	commute avec tous les opérateurs $T(g)$, $g$ parcourant $G$, alors il est
-	obligé que $A$ soit un opérateur de translation.
-	% A reformuler et donner une interprétation.
+		\item Si $E_{1} = E_{2}$ et $\rho = \tau$, alors $A = \lambda
+			Id_{E_{1}}$.
+	\end{enumerate}
 \end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	\begin{enumerate}
+		\item Supposons que $(E_{1},
+			\rho)$,
+			$(E_{2}, \tau)$ ne sont pas
+			équivalentes. Alors, $A$ n'est pas bijective car il n'existe pas
+			d'applications linéaires bijectives répondant à
+			l'équation \ref{eq:interwining}. On en déduit que $\ker{(A)} \neq
+			\GSset{0_{E_{2}}}$ ou $Im(T) \neq E_{1}$.
+
+			Supposons que $\ker{(A)} \neq \GSset{0_{E_{2}}}$. Par la proposition
+			\ref{prop:kernel_and_rank_invariant}, $\ker{(A)}$ est invariant pour $\tau$.
+			Comme $\tau$ est irréductible, que $\ker{(A)}$ est invariant pour $\tau$ et
+			n'est pas restreint à l'élément nul, $\ker{(A)} = E_{2}$. C'est-à-dire
+			que $A = 0$.
+
+			Par un même raisonnement, en utilisant le fait que $Im(A)$ est invariant
+			pour $\rho$, on a $A = 0$.
+
+			Donc $A = 0$ dans tous les cas.
+		\item Supposons que $E_{1} = E_{2}$ et $\rho = \tau$.
+			L'équation \ref{eq:interwining} nous dit que $A$ commute avec
+			$\rho(g)$ pour tout $g \in G$. On peut alors utiliser la proposition
+			\ref{prop:commute_eigenspace} qui nous dit que tout sous-espace
+			propre de $A$ est invariant pour $\rho$.
+
+			Soit $\lambda$ une valeur propre de $A$ (celle-ci existe car nous
+			travaillons dans le cas complexe) et posons $E_{\lambda}$ le
+			sous-espace propre associé à la valeur propre $\lambda$. Nous avons
+			alors $E_{\lambda}$ qui est invariant pour $\rho$, et $E_{\lambda}
+			\neq \GSset{0_{E_{1}}}$.
+
+			Comme $\rho$ est irréductible, on a $E_{\lambda} = E_{1}$. Donc,
+			$A = \lambda Id_{E_{1}}$.
+	\end{enumerate}
+\end{proof}
+\fi
 
 Nous avons une conséquence direct du \ref{lemma:shur_lemma_1}.
 
 \begin{corollary}
-	Soit $T \in \GSreprf{G}{\Hilbert}$ une représentation irréductible où $G$
-	est un groupe commutatif. Alors $\Hilbert$ est de dimension $1$, et donc
-	$\Hilbert = \real$ ou $\Hilbert = \complex$.
+	Soit $(G, ., 1_{G})$ un groupe commutatif et soit $(E_{1},
+	\rho)$,
+	une représentation irréductible de $(G, ., 1_{G})$.
+
+	Alors $E_{1}$ est de dimension $1$ (donc $E_{1} = \complex$).
 \end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
 
 Ce corollaire nous montre que les seules représentations irréductibles d'un
 groupe commutatif sont de degré 1. C'est-à-dire que lorsque nous étudions les
 représentations irréductibles d'un groupe abélien, nous étudions des
-sous-groupes (finis) de $\real$ ou $\complex$.
+sous-groupes (finis) $\complex$.
 
 En particulier, les seuls sous-groupes finis de $\complex$ sont les groupes des
 racines de l'unité. Étudier les représentation irréductibles de $G$ sur
 $\complex$ revient à étudier les sous-groupes abéliens de $G$, et donc en
 particulier les sous-groupes cycliques.
 
-\begin{proposition} [Lemme de Shur 2]
-	\label{lemma:shur_lemma_2}
-	Soient $\Hilbert$ et $\mathcal{K}$ deux espaces de Hilbert, et $G$ un groupe.
-	Soient $S \in \GSrepr{G}{\Hilbert}$ et $T \in \GSrepr{G}{\mathcal{K}}$ deux
-	représentations de $G$.
+Donnons un autre corollaire du lemme de Shur \ref{lemma:shur_lemma_1}, reposant
+sur la définition de la fonction $T_{u}$ donnée précédemment.
 
-	Soit $A \in \GScontinueHomo{\Hilbert}{\mathcal{K}}$ tel que:
+\begin{corollary}
+	Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1},
+	\rho)$,
+	$(E_{2}, \tau)$
+	deux représentations irréductibles de $(G, ., 1_{G})$.
 
-	\begin{equation*}
-		\forall g \in G, A \circ S(g) = T(g) \circ A
-	\end{equation*}
+	Soit $u : E_{1} \rightarrow E_{2}$ une application linéaire et
+	posons $T_{u} : E_{1}  \rightarrow E_{2}$ tel que
+	\begin{equation}
+		T_{u}(x) = \frac{1}{\ordergroup{G}} \sum_{g \in G} (\tau(g) \circ u \circ
+		\rho(g^{-1})) (x)
+	\end{equation}
 
-	Alors, soit $A = O_{\Hilbert, \mathcal{K}}$, soit $A = \lambda Id_{\Hilbert,
-		\mathcal{K}}$.
+	Alors
+	\begin{enumerate}
+		\item Si $(E_{1}, \rho)$,
+	$(E_{2}, \tau)$ sont inéquivalentes,
+	alors $T_{u} = 0$.
+		\item Si $E_{1} = E_{2}$ et $\rho = \tau$, alors $T_{u} = \lambda
+			Id_{E_{1}}$ avec $\lambda = \frac{Tr(u)}{\dim{E_{1}}}$.
+	\end{enumerate}
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+	Il suffit de vérifier que $T_{u}$ répond à l'équation \ref{eq:interwining}
+	et d'utiliser le lemme de Shur.
+\end{proof}
+\fi
+
+Remarquons que ce corollaire demande une hypothèse en plus: le
+groupe $(G, ., 1_{G})$ doit être fini !
+
+Remarquons aussi que les hypothèses de finitude sur le groupe $(G, ., 1_{G})$ et
+l'irréductibilité des représentations impliquent immédiatement, par
+\ref{prop:irreductible_representation_finite_group_is_finite}, que $E_{1}$ et
+$E_{2}$ sont de dimensions finies.
+
+% TODO: A reformuler car mal expliqué. Il faudrait voir si en remplaçant E_{1}
+% est isomorphe à E_{2} est valable pour le lemme de Shur comme deuxième
+% proposition.
+
+%En particulier, tous les cas sont bien envisagés car si $E_{1} \neq E_{2}$, il
+%est évident que les représentations ne sont pas équivalentes car $E_{1}$ et
+%$E_{2}$ seraient isomorphes en tant qu'espace vectoriel, alors que ceux-ci ne le
+%sont pas.
+
+\section{Représentation dans les espaces de Hilbert}
+
+Nous supposerons maintenant que nous sommes dans le cas $\mathbb{K} = \complex$.
+
+Depuis le début, nous nous sommes uniquement intéressés au cas où $(E,
+\GSnormeDef{.}{E})$ est un espace vectoriel normé quelconque.
+
+Prenons maintenant le cas où $E$ est un espace de Hilbert,
+c'est-à-dire que la norme $\GSnormeDef{.}{E}$ peut-être définie à travers un
+produit scalaire. On parle alors de \textbf{représentation hilbertienne}.
+
+Nous utiliserons la notation $(\Hilbert, \dotprod{.}{.})$ à la place de $(E,
+\GSnormeDef{.}{E})$, où $\dotprod{.}{.}$ est le produit scalaire induisant la
+norme $\GSnormeDef{.}{E}$, pour rester cohérent avec les notations usuelles
+utilisées dans la théorie des espaces de Hilbert.
+
+Dans les espaces de Hilbert, on peut définir les opérateurs unitaires qui
+sont les opérateurs $U$ tel que $U^{*}$, l'opérateur adjoint, est égale à
+$U^{-1}$, c'est-à-dire
+\begin{equation}
+	U \circ U^{*} = U^{*} \circ U = Id_{\Hilbert}
+\end{equation}
+
+%TODO: expliquer l'importance des opérateurs unitaires.
+
+Nous noterons $\GSortho{V}$ l'orthogonal du sous-espace vectoriel $V$, c'est-à-dire
+\begin{equation}
+	\GSortho{V} = \GSsetDef{x \in \Hilbert}{\forall y \in V, \, \dotprod{x}{y} = 0}
+\end{equation}
+
+\begin{definition} [Représentation unitaire]
+	Soit $(G, ., 1_{G})$ un groupe et soit $(\Hilbert, \dotprod{.}{.}, \rho)$ une représentation de
+	$(G, ., 1_{G})$ où $(\Hilbert, \dotprod{.}{.})$ est un espace de Hilbert.
+
+	On dit que $(\Hilbert, \dotprod{.}{.}, \rho)$ est \textbf{une représentation unitaire} si
+	pour tout $g \in G$, $\rho(g)$ est unitaire.
+\end{definition}
+
+On montrera que les représentations unitaires jouent un rôle important pour les
+représentations des groupes finis. En fait, on montrera que dans chaque classe
+d'équivalence où apparait une représentation hilbertienne, il y a une
+représentation unitaire.
+
+En d'autres termes,
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe \textit{fini}.
+
+	Alors, toute représentation hilbertienne est équivalente à une
+	représentation unitaire.
 \end{proposition}
 
 \ifdefined\outputproof
 \begin{proof}
-	Remarquons que dans le deuxième cas, nous avons comme conséquences que
-	$\Hilbert$ est isomorphe à $\mathcal{K}$, et que $S$ et $T$ sont
-	équivalentes.
+	Soit $(\Hilbert, \dotprod{.}{.}_{\Hilbert}, \rho)$ une représentation hilbertienne de
+	$(G, ., 1_{G})$.
+	Nous devons montrer qu'il existe une représentation hilbertienne unitaire
+	$(\mathcal{K}, \dotprod{.}{.}_{\mathcal{K}}, \tau)$ équivalente à
+	$(\Hilbert, \dotprod{.}{.}_{\Hilbert}, \rho)$.
+
+	Prenons $\mathcal{K} = \Hilbert$ et $\tau = \rho$. Il nous reste à
+	construire le produit scalaire sur $\mathcal{K}$ qui permettra d'obtenir ce
+	que l'on souhaite.
+
+	Soient $x, y \in \mathcal{K}$. Posons
+	\begin{equation}
+		\dotprod{x}{y}_{\mathcal{K}} = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+		\dotprod{\rho_{g}(x)}{\rho_{g}(y)}_{\Hilbert}
+	\end{equation}
+
+	Le produit scalaire $\dotprod{.}{.}_{\mathcal{K}}$ ainsi défini induit une
+	représentation hilbertienne unitaire $(\mathcal{K},
+	\dotprod{.}{.}_{\mathcal{K}}, \rho)$.
+
+	Cette représentation est bien équivalente à $(\Hilbert,
+	\dotprod{.}{.}_{\Hilbert}, \rho)$ en prenant $A = Id_{\Hilbert}$.
 \end{proof}
 \fi
 
-\subsection{Orthonormalité et relations de complétude des matrices de
-représentations irréductibles}
+En d'autres termes, lorsque nous étudions une représentation hilbertienne d'un
+groupe fini, on peut
+supposer, sans perte de généralité que nous travaillons avec une représentation
+unitaire.
+Les propositions suivantes préciseront toujours que nous avons une
+représentation unitaire si c'est le cas (et bien sûr si nous sommes dans le cas
+d'un groupe fini), mais il faudra se souvenir que nous
+pouvons généraliser à n'importe quelle représentation hilbertienne.
 
-Nous nous plaçons toujours dans l'étude des représentation dans un espace de
-Hilbert $\Hilbert$.
+%%Ajouter la représentation matricielle.
+
+%Donnons quelques représentations décomposables.
+
+%\begin{proposition}
+	%Soit $T \in \GSrepr{G}{\Hilbert}$ unitaire qui est réductible. Alors $T$
+	%est complètement réductible.
+%\end{proposition}
+
+%\ifdefined\outputproof
+%\begin{proof}
+	%Comme $T$ est réductible, il existe un sous-espace invariant non trivial.
+	%Notons le $V$.
+	%Nous voulons alors montrer que $\GSortho{V}$ est également invariant pour
+	%$T$. On aura alors que $T$ est complètement réductible.
+%\end{proof}
+%\fi
+
+\begin{remarque}
+	Prenons une représentation hilbertienne $(\Hilbert, \dotprod{.}{.}_{\Hilbert}, \rho)$ de
+	$(G, ., 1_{G})$ et supposons, sans perte de généralité, que celle-ci est
+	unitaire.
+
+	On a alors la relation suivante
+	\begin{equation}
+		\forall g \in G \, \rho(g^{-1}) = {(\rho(g)^{*})}^{t}
+	\end{equation}
+	c'est-à-dire que, dans le cas d'une représentation finie, les composantes de
+	la matrice représentant $\rho(g^{-1})$
+	deviennent
+	\begin{equation}
+		\rho(g^{-1})_{ij} = \conjuguate{\rho(g)_{ji}}
+	\end{equation}
+\end{remarque}
+
+\section{Caractères et relations d'orthogonalité}
+
+\subsection{Fonctions sur un groupe}
+
+Prenons un groupe $(G, ., 1_{G})$ et concentrons-nous sur le corps des complexes
+$\complex$.
+
+On construit l'ensemble des fonctions de $G$ dans $\complex$, qu'on note
+$\complex[G]$. Cet ensemble peut être muni d'une structure d'espace vectoriel
+complexe.
+
+On peut définir l'addition interne $+_{\complex[G]}$ tel que, pour tout $f, g
+\in \complex[G]$ et pour tout $h \in G$,
+\begin{equation}
+	(f +_{\complex[G]} g) (\overbrace{h}^{\in G}) = \underbrace{f(g)}_{\in
+	\complex} + \underbrace{g(h)}_{\in \complex}
+\end{equation}
+
+et la multiplication scalaire $._{\complex[G]}$, tel que pour tout $z \in \complex$,
+pour tout $f \in \complex[G]$ et pour tout $h \in G$,
+\begin{equation}
+	(z ._{\complex[G]} f) (h) = z \overbrace{f(h)}^{\in \complex}
+\end{equation}
+
+en défissant l'élément neutre $0_{\complex[G]}$ comme la fonction nulle.
+
+On obient bien un espace vectoriel complexe $(\complex[G], +_{\complex[G]},
+	._{\complex[G]}, 0_{\complex[G]})$. \footnote{Cette construction peut être
+		faite pour n'importe quel corps. On note alors la structure
+		$(\mathbb{K}[G], +_{\mathbb{K}[G]}, ._{\mathbb{K}[G]},
+		0_{\mathbb{K}[G]})$.}
+
+		Dans le cas d'un groupe fini\footnote{Le cas compact est possible}, nous pouvons définir un produit scalaire sur
+$\complex[G]$. En effet, pour tout $f_{1}, f_{2} \in \complex[G]$, on définit
+
+\begin{equation}
+	\dotprod{f_{1}}{f_{2}}_{\complex[G]} = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+	\conjuguate{f_{1}(g)} f_{2}(g)
+\end{equation}
+
+L'espace $(\complex[G], \dotprod{.}{.}_{\complex[G]})$ alors formé donne un
+espace de Hilbert.\footnote{Le lecteur est invité à vérifier que la fonction
+	$\dotprod{.}{.}_{\complex[G]}$ est bien un produit scalaire et que l'espace
+est alors complet pour la norme induite.}.
+
+Terminons avec une proposition qui nous aidera par la suite.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(\complex[G], +_{\complex[G]},
+	._{\complex[G]}, 0_{\complex[G]})$ l'espace vectoriel des fonctions de $G$
+	dans $\complex$.
+
+	Alors $(\complex[G], +_{\complex[G]}, ._{\complex[G]}, 0_{\complex[G]})$ est
+	de dimension finie. Plus précisément, sa dimension vaut $\ordergroup{G}$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	Soit $g \in G$. Posons la fonction
+	\begin{equation}
+		e_{g} : G \rightarrow \complex
+	\end{equation}
+	tel que, pour tout $h \in G$,
+	\begin{equation}
+		e_{g}(h) = \delta_{g}^{h}
+	\end{equation}
+
+	Les fonctions $e_{g}$, $g$ parcourant $G$, sont des fonctions de
+	$\complex[G]$, linéairément indépendante.
+
+	De plus, l'ensemble $\GSsetDef{e_{g}}{g \in G}$ génère bien l'ensemble
+	$\complex[G]$ car si on prend une fonction $f : G \rightarrow \complex$, on
+	a
+	\begin{equation}
+		f = \sum_{g \in G} \overbrace{f(g)}^{\in \complex} \overbrace{e_{g}}^{\in
+		\complex[G]}
+	\end{equation}
+
+	L'ensemble $\GSsetDef{e_{g}}{g \in G}$ forment donc une base $\complex[G]$
+	et comportent $\ordergroup{G}$ éléments. Cette base est appelé \textbf{base
+	usuelle de $\complex[G]$}.
+\end{proof}
+\fi
+
+Cette construction va nous permettre de travailler avec des fonctions qui vont
+de $G$ dans $\complex$, et de tirer des propositions et théorèmes intéressants
+sur les représentations de groupe.
+
+\subsection{Caractère}
+
+Nous allons nous concentrer sur les représentations finies des groupes finis.
+Dans la suite, $(G, ., 1_{G})$ représente un groupe fini et $(E, \rho)$ une
+représentation finie (ie $E$ est de dimension finie).
+
+Rappelons que dans le cas d'une représentation finie, celle-ci peut être
+représentée par une matrice carrée $n \cartprod n$ où $n$ est la dimension de
+l'espace vectoriel.
+
+\begin{definition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E, \rho)$ une
+	représentation finie de $(G, ., 1_{G})$.
+
+	On définit \textbf{le caractère de $(E, \rho)$} comme la
+	fonction
+	\begin{equation}
+		\chi_{\rho} : G \rightarrow \complex
+	\end{equation}
+	tel que pour tout $g \in G$
+	\begin{equation}
+		\chi_{\rho}(g) = Tr(\rho_{g}) = \sum_{i = 1}^{\dim(E)} \rho(g)_{ii}
+	\end{equation}
+\end{definition}
+
+Remarquons que le caractère d'une répresentation d'un groupe est une fonction de
+$\complex[G]$. Nous étudierons plus tard le produit scalaire entre deux
+caractères.
+
+Donnons quelques premières propriétés sur les caractères des représentations.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E, \rho)$ une
+	représentation finie de $(G, ., 1_{G})$.
+
+	Soit $\chi_{\rho}$ le caractère de la représentation $(E,
+	\rho)$.
+	\begin{enumerate}
+		\item Pour tout $g \in G$, $\chi_{\rho}(g^{-1}) =
+			\conjuguate{\chi_{\rho}(g)}$
+		\item $\chi_{\rho}(1_{G}) = \dim(E)$
+		\item Si $\rho = \rho_{1} \oplus \rho_{2}$, alors $\chi_{\rho} =
+			\chi_{\rho_{1}} + \chi_{\rho_{2}}$.
+		\item Soit $h \in G$. Alors, pour tout $g \in G$,
+			$\chi_{\rho}(ghg^{-1}) = \chi_{\rho}(h)$. En d'autres termes, le
+			caractère est stable dans chaque sous-groupe normal.
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{proposition}
+	Le caractère d'une représentation finie d'un groupe fini est constante par
+	classe. C'est-à-dire que si nous prenons deux représentations équivalentes,
+	leur caractère seront les mêmes.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\subsection{Relations d'orthogonalité}
+
+Nous arrivons aux relations d'orthogonalité sur les \textbf{groupes finis} des
+\textbf{représentations finies}.
+
+N'oublions pas que, d'après la proposition
+\ref{prop:irreductible_representation_finite_group_is_finite}, une
+représentation irréductible d'un groupe fini est toujours une représentation
+finie.
+
+Rappelons que le caractère d'une représentation est une fonction appartenant à
+l'espace de Hilbert $\complex[G]$. Nous pouvons donc étudier le résultat du
+produit scalaire entre deux caractères.
+
+De plus, nous avons donné quelques résultats grace au lemme de Shur. Nous allons
+donner des résultats importants qui en découlent.
+
+Commençons d'abord par les relations d'orthogonalité sur les représentations. On
+arrivera alors à une relation semblable sur les caractères.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1}, \rho)$,
+	$(E_{2}, \tau)$
+	deux représentations irréductibles de $(G, ., 1_{G})$.
+
+	Alors
+	\begin{enumerate}
+		\item Si $(E_{1}, \rho)$,
+			$(E_{2}, \tau)$ sont
+			inéquivalentes, alors
+			\begin{equation}
+				\label{eq:orthogonality_relation_inequivalente}
+				\forall i, j, k, l \, \sum_{g \in G} \tau(g)_{kl}
+				\rho(g^{-1})_{ji}
+				= 0
+			\end{equation}
+		\item Si $E_{1} = E_{2}$ et $\rho = \tau$, alors
+		\begin{equation}
+			\label{eq:orthogonality_relation_equivalente}
+			\forall i, j, k, l \, \frac{1}{\ordergroup{G}} \sum_{g \in G}
+			\rho(g)_{kl} \rho(g^{-1})_{ji}
+			= \frac{1}{\dim{(E)}} \delta_{k}^{i} \delta_{l}^{j}
+		\end{equation}
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{remarque}
+	Dans le cas hilbertien et si les représentations sont unitaires, les équations
+	\ref{eq:orthogonality_relation_inequivalente} et
+	\ref{eq:orthogonality_relation_equivalente} deviennent
+	\begin{equation}
+		\forall i, j, k, l \, \sum_{g \in G} \tau(g)_{kl}
+		\conjuguate{\rho(g)_{ij}}
+		= 0
+	\end{equation}
+	et
+	\begin{equation}
+		\forall i, j, k, l \, \frac{1}{\ordergroup{G}} \sum_{g \in G}
+		\rho(g)_{kl} \conjuguate{\rho(g)_{ij}}
+		= \frac{1}{\dim{(E)}} \delta_{k}^{i} \delta_{j}^{l}
+	\end{equation}
+	car
+	\begin{equation}
+		\rho(g)^{-1} = {(\rho(g)^{*})}^{t}
+	\end{equation}
+\end{remarque}
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1}, \rho)$,
+	$(E_{2}, \tau)$
+	deux représentations finies de $(G, ., 1_{G})$.
+
+	Alors
+	\begin{enumerate}
+		\item Si $(E_{1}, \rho)$,
+		$(E_{2}, \tau)$ sont irréductibles
+		et inéquivalentes, alors
+		\begin{align}
+			\dotprod{\chi_{\rho}}{\chi_{\tau}}_{\complex[G]} & = 0 \\
+			& = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+			\conjuguate{\chi_{\rho}(g)} \chi_{\tau}(g) \\
+			& = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+			\chi_{\rho}(g^{-1}) \chi_{\tau}(g)
+		\end{align}
+		En d'autres termes, les caractères de deux représentations finies irréductibles et
+		inéquivalentes d'un groupe fini sont orthogonaux.
+
+		\item Si $(E_{1}, \rho)$ est une
+			représentation irréductible, alors
+			\begin{align}
+				\dotprod{\chi_{\rho}}{\chi_{\rho}}_{\complex[G]} & = 1 \\
+				& = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+				\conjuguate{\chi_{\rho}(g)} \chi_{\rho}(g) \\
+				& = \frac{1}{\ordergroup{G}} \sum_{g \in G}
+				\norm{\chi_{\rho}(g)}^{2}
+			\end{align}
+			En d'autres termes, le caractère de toute représentation finie irréductible d'un
+			groupe fini est normé.
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Nous en venons à un théorème important.
+
+\begin{theorem}
+	\label{thm:uir_set_orthonormal}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	Les caractères des représentations irréductibles inéquivalentes de
+	$(G, ., 1_{G})$ forment un ensemble d'éléments orthogonaux de $\complex[G]$.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+	Evident selon la proposition précédente.
+\end{proof}
+\fi
+
+\begin{corollary}
+	\label{corollary:finite_number_iir}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	L'ensemble des représentations inéquivalentes et irréductibles de $(G, .,
+	1_{G})$ est de cardinalité finie.
+
+	En d'autres termes, il y a un nombre fini de représentations inéquivalentes et irréductibles pour un
+	groupe fini donné.
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+	On utilise le théorème précédent et le fait que $\complex[G]$ est de
+	dimension finie si $(G, ., 1_{G})$ est un groupe fini.
+\end{proof}
+\fi
+
+Le corollaire \ref{corollary:finite_number_iir} va nous permettre d'utiliser une
+notation simplifiée pour représenter les représentations finies d'une groupe
+fini.
+
+\begin{notation}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+	Le corollaire \ref{corollary:finite_number_iir} nous dit qu'il existe un
+	nombre fini de représentation irréductibles inéquivalentes de $(G, .,
+	1_{G})$.
+
+	Supposons qu'il existe $N$ représentations irréductibles
+	inéquivalentes de $(G, ., 1_{G})$. Nous allons noter celles-ci $(E_{1},
+	\rho_{1})$, \ldots, $(E_{N}, \rho_{N})$.
+\end{notation}
+
+En utilisant cette notation, nous pouvons énoncer les relations d'orthogonalités
+de la manière suivante.
+
+Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1},
+	\rho_{1})$, \ldots, $(E_{N},
+	\rho_{N})$ ses représentations irréductibles inéquivalentes.
+	On a alors
+	\begin{equation}
+		\dotprod{\chi_{\rho_{i}}}{\chi_{\rho_{j}}}_{\complex[G]} =
+		\delta_{i}^{j}
+	\end{equation}
+
+\section{Table de caractères}
+
+Nous avons vu précédemment qu'il existait un nombre fini de représentations
+finies hilbertiennes irréductibles et inéquivalentes pour un groupe fini donné.
+On les numérote de $1$ à $N$.
+
+De même, pour un groupe donné, il existe un nombre fini de sous-groupe normaux.
+
+De plus, pour une représentation donné d'un groupe donné, le caractère de la
+représentation est constante sur chaque sous-groupe normal.
+
+Finalement, pour connaitre les valeurs du caractère d'une représentation, il
+suffit de connaitre sa valeur sur un représentation de chaque sous-groupe
+normal.
+
+Soit $(G, ., 1_{G})$ un groupe fini possédant $M$ sous-groupes normaux. Notons
+les sous-groupes normaux de $(G, ., 1_{G})$ par $(H_{1}, ., 1_{G}), \cdots,
+(H_{M}, ., 1_{G})$.
+
+Prenons, pour chaque sous-groupe normal $(H_{j}, ., 1_{G})$ un élément $h_{j}$
+qui servira de représentant pour le calcul des caractères de chaque
+représentation.
+
+Nous pouvons placer, dans un tableau, chaque représention finie hilbertienne
+irréductible inéquivalente $(E_{i}, \rho_{i})$ dans une ligne, et dans chaque colonne, écrire le
+représentant $h_{j}$ du sous-groupe normal $(H_{j}, ., 1_{G})$.
+
+A l'intersection de la ligne $i$ et de la colonne $j$ se retrouvera l'évaluation
+du caractère $\chi_{\rho_{i}}$ de la représentation $(E_{i},
+\rho_{i})$ en $h_{j}$.
+
+On se retrouve alors avec un tableau de $N$ lignes et $M$ colonnes.
+
+\[\setlength\tabcolsep{2pt}\def\arraystretch{1.5}
+\begin{array}{c|c|c|c}
+	& \ordergroup{H_{1}} & \cdots \cdots & \ordergroup{H_{M}} \\
+	& h_{1} & \cdots \cdots & h_{M} \\
+	\hline
+	\cdots \cdots & \cdots \cdots & \cdots \cdots & \cdots \cdots \\
+	\chi_{\rho_{i}} & \chi_{\rho_{i}}(h_{1}) & \cdots \cdots & \chi_{\rho_{i}}(h_{M})
+	\\
+	\cdots \cdots & \cdots \cdots & \cdots \cdots & \cdots \cdots \\
+	\chi_{\rho_{j}} & \chi_{\rho_{j}}(h_{1}) & \cdots \cdots & \chi_{\rho_{j}}(h_{M})
+	\\
+	\cdots \cdots & \cdots \cdots & \cdots \cdots & \cdots \cdots \\
+\end{array}
+\]
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1},
+	\rho_{1}), \cdots, (E_{N}, \rho_{N})$ ses représentations
+	irréductibles inéquivalentes.
+
+	Soient $(H_{1}, ., 1_{G}), \cdots, (H_{M}, ., 1_{G})$ les sous-groupes
+	normaux de $(G, ., 1_{G})$ et $h_{i}$ un représentant du sous-groupe normal
+	$(H_{i}, ., 1_{G})$.
+
+	Alors, pour tout $k, j \in \GSset{1, \cdots, N}$, on a
+	\begin{equation}
+		\dotprod{\chi_{\rho_{k}}}{\chi_{\rho_{j}}}_{\complex[G]} =
+		\frac{1}{\ordergroup{G}} \sum_{i = 1}^{M} \ordergroup{H_{i}} \, \,
+		\conjuguate{\chi_{\rho_{k}}(h_{i})} \, \, \chi_{\rho_{j}}(h_{i})
+	\end{equation}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{theorem}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E, \rho)$
+	une représentation de $(G, ., 1_{G})$.
+	Soit $\chi_{\rho}$ le caractère de la représentation $(E, \rho)$.
+
+	Alors, il existe $(E_{1}, \rho_{1}), \cdots, (E_{n},
+	\rho_{n})$ des représentations irréductibles
+	inéquivalentes, et des
+	naturels non nuls $m_{1}, \cdots, m_{n}$ tel que
+	\begin{equation}
+		\rho = \oplus_{i = 1}^{n} m_{i} \rho_{i}
+	\end{equation}
+	et
+	\begin{equation}
+		m_{i} = \dotprod{\chi_{\rho_{i}}}{\chi_{\rho}}_{\complex[G]}
+	\end{equation}
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{definition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E, \rho)$
+	une représentation de $(G, ., 1_{G})$.
+
+	Soient les représentations irréductibles inéquivalentes $(E_{1},
+	\rho_{1}), \cdots, (E_{n},
+	\rho_{n})$ et les naturels non nuls $m_{1}, \cdots,
+	m_{n}$ tel que
+	\begin{equation}
+		\rho = \oplus_{i = 1}^{n} m_{i} \rho_{i}
+	\end{equation}
+
+	Le naturel $m_{i}$ est \textbf{la multiplicité de $\rho_{i}$ dans $\rho$} et
+	le morphisme $m_{i} \rho_{i}$ est appelé \textbf{composante isotopique de
+		$\rho_{i}$ dans $\rho$}.
+\end{definition}
+
+\begin{corollary}
+	Soit $(G, ., 1_{G})$ un groupe fini et soient $(E_{1},
+	\rho_{1})$ et $(E_{2}, \rho_{2})$
+	deux représentations de $(G, ., 1_{G})$.
+
+	Posons $\chi_{\rho_{1}}$ le caractère de la représentation $(E_{1},
+	\rho_{1})$ et $\chi_{\rho_{2}}$ le caractère de la
+	représentation $(E_{2}, \rho_{2})$.
+
+	Alors les assertions suivantes sont équivalentes.
+	\begin{enumerate}
+		\item Les représentations $(E_{1},
+			\rho_{1})$ et $(E_{2}, \rho_{2})$ sont équivalentes.
+		\item Les représentations $(E_{1},
+			\rho_{1})$ et $(E_{2}, \rho_{2})$ ont même caractère, ie
+			$\chi_{\rho_{1}} = \chi_{\rho_{2}}$.
+
+	\end{enumerate}
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E, \rho)$
+	une représentation de $(G, ., 1_{G})$.
+
+	Soient les représentations irréductibles inéquivalentes $(E_{1},
+	\rho_{1}), \cdots, (E_{n},
+	\rho_{n})$ et les naturels non nuls $m_{1}, \cdots,
+	m_{n}$ tel que
+	\begin{equation}
+		\rho = \oplus_{i = 1}^{n} m_{i} \rho_{i}
+	\end{equation}
+
+	Soit $\chi_{\rho}$ le caractère de la représentation $(E,
+	\rho)$.
+
+	Alors
+	\begin{equation}
+		\dotprod{\chi_{\rho}}{\chi_{\rho}}_{\complex[G]} = \sum_{i = 1}^{n}
+		m_{i}^{2}
+	\end{equation}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{corollary}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(E,
+	\rho)$ une représentation de $(G, ., 1_{G})$.
+
+	Soit $\chi_{\rho}$ le caractère de la représentation $(E,
+	\rho)$.
+
+	Alors les assertions suivantes sont équivalentes.
+
+	\begin{enumerate}
+		\item La représentation $(E,
+	\rho)$ est irréductible.
+		\item Le caractère de la représentation $(E, \rho)$ est
+			normé, c'est-à-dire
+			\begin{equation}
+				\dotprod{\chi_{\rho}}{\chi_{\rho}}_{\complex[G]} = 1
+			\end{equation}
+	\end{enumerate}
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\section{La représentation régulière}
+
+Rappelons encore une fois que, pour un groupe fini $(G, ., 1_{G})$ l'ensemble
+des fonctions $\complex[G]$ forment un espace de Hilbert de dimension
+$\ordergroup{G}$.
+
+Il est alors censé d'étudier les représentations finies $(\complex[G],
+\rho)$ de $(G, ., 1_{G})$, c'est-à-dire les
+représentations finies ayant comme support l'espace vectoriel
+$\complex[G]$.
+
+Nous allons nous concentrer sur une représentation, appelée
+\textbf{représentation régulière}.
+
+\begin{definition}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+	Soit $\complex[G]$ l'espace vectoriel normé
+	des fonctions de $G$ dans $\complex$ et soit $\GSsetDef{e_{g}}{g \in G}$ la
+	base usuelle de $\complex[G]$.
+
+	La représentation régulière de $(G, ., 1_{G})$ (sur $\complex$) est la
+	représentation $(\complex[G], R)$ où
+	\begin{equation}
+		R : G \rightarrow \GSisomorphisme{\complex[G]}
+	\end{equation}
+
+	tel que, pour tout $g \in G$
+	\begin{equation}
+		R(g) : \complex[G] \rightarrow \complex[G] : e_{h} \rightarrow e_{gh}
+	\end{equation}\footnote{On rappelle que pour une application linéaire, ce
+		qui est le cas pour $R(g)$, il suffit de définir les images sur les
+	éléments d'une base. Les autres éléments sont définis par linéarité.}
+\end{definition}
+
+Pour appréhender cette définition, commençons par regarder comment l'évaluation
+est faite sur l'ensemble des fonctions de $\complex[G]$.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(\complex[G],
+	R)$ sa représentation régulière. Soit $(e_{g})_{g \in G}$
+	la base usuelle de $\complex[G]$.
+
+	Alors, pour tout $g \in G$, pour tout $f \in \complex[G]$ et pour tout $h
+	\in G$,
+	\begin{equation}
+		\overbrace{R_{g}(f)}^{\in \complex[G]}(h) = \overbrace{f(g^{-1}h)}^{\in
+		\complex}
+	\end{equation}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Calculons maintenant les représentations régulières de certains groupes.
+
+\begin{exemple}
+	Nous allons commencer par un exemple simple: le groupe à $2$ éléments
+	$(\integer_{2}, +_{mod(2)}, 0)$. Représentons $\integer_{2}$ par les deux
+	éléments $0$ et $1$.
+
+	Nous devons d'abord commencer par calculer la dimension du support de la représentation
+	régulière pour connaitre la taille des matrices représentant la
+	représentation. Ici, le support est $\complex[\integer_{2}]$. On a vu que la
+	dimension du support de la représentation régulière vaut l'ordre du groupe.
+	Dans notre cas, $dim(\complex[\integer_{2}])$ car $\integer_{2}$ est d'ordre
+	$2$.
+	Les matrices que nous allons calculer seront des matrices complexes et
+	inversibles $2 \cartprod 2$.
+
+	Comme la représentation régulière est un morphisme, on a le neutre qui est
+	envoyé sur le neutre. On a donc
+	\begin{equation}
+		R(0) =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}
+	\end{equation}
+
+	Maintenant, il nous reste à calculer $R(1)$. On a $R(1) \in
+	Isom(\complex[\integer_{2}])$, c'est-à-dire une application linéaire en
+	particulier. il
+	nous suffit donc de calculer les images des vecteurs de bases de
+	$\complex[\integer_{2}]$, qui sont $e_{0}$ et $e_{1}$.
+
+	On a
+	\begin{equation}
+		R(1) (e_{0}) = e_{1 +_{mod(2)} 0} = e_{1}
+	\end{equation}
+	et
+	\begin{equation}
+		R(1) (e_{1}) = e_{1 +_{mod(2)} 1} = e_{0}
+	\end{equation}
+
+	On en déduit la matrice représentant $R(1)$:
+	\begin{equation}
+		R(1) =
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix}
+	\end{equation}
 
 
+\end{exemple}
 
+\begin{exercice}
+	\begin{enumerate}
+		\item Calculer la représentation régulière de $\integer_{n}$, le groupe
+			cyclique d'ordre $n$.
+		\item Calculer la représentation régulière de $\integer_{2} \cartprod
+			\integer_{2}$.
+	\end{enumerate}
+\end{exercice}
+
+Cette représentation est assez particulière.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	La représentation régulière $(\complex[G], R)$ de $(G, .,
+	1_{G})$ est unitaire.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	Soit $g \in G$ et soient $f_{1}, f_{2} \in \complex[G]$. Il faut montrer que
+
+	\begin{equation}
+		\dotprod{R_{g}(f_{1})}{R_{g}(f_{2})}_{\complex[G]} =
+		\dotprod{f_{1}}{f_{2}}_{\complex[G]}
+	\end{equation}
+\end{proof}
+\fi
+
+Qu'en est-il maintenant du caractère de la représentation régulière ?
+
+Par définition, on a
+\begin{equation}
+	R_{g}(e_{h}) = e_{gh}
+\end{equation}
+
+et on a
+
+\begin{equation}
+	e_{gh} = e_{h} \Leftrightarrow g = 1_{G}
+\end{equation}
+
+Comme la trace est indépendante de la base, on peut la calculer selon la base
+usuelle. Selon les remarques précédentes, on en déduit que
+
+\begin{align}
+	\chi_{R}(g) & = \delta_{1_{G}}^{g} \ordergroup{G} \\
+	& = \delta_{1_{G}}^{g} dim(\complex[G]) \\
+\end{align}
+ou de manière plus explicite
+\begin{align}
+	\chi_{R}(g) & =
+		\begin{cases}
+			dim(\complex[G])	& \text{ si $g = 1_{G}$} \\
+			0					& \text{ sinon}
+		\end{cases} \\
+		& =
+		\begin{cases}
+			\ordergroup{G}	& \text{ si $g = 1_{G}$} \\
+			0					& \text{ sinon}
+		\end{cases}
+\end{align}
+
+Passons à la réductibilité de la représentation régulière.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(\complex[G],
+	R)$ sa représentation régulière. Soit $(e_{g})_{g \in G}$
+	la base usuelle de $\complex[G]$.
+
+	Alors le sous-espace vectoriel de $\complex[G]$ engendré par $\sum_{g \in G} e_{g}$ est invariant pour la
+	représentation régulière.
+
+	De plus, la sous-représentation induite par le sous-espace vectoriel de
+	$\complex[G]$ engendré par $\sum_{g \in G} e_{g}$ est de dimension $1$ et est équivalente à la représentation triviale.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+On remarque donc que la représentation régulière n'est pas irréductible si elle
+n'est pas de dimension $1$.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini et soit $(\complex[G],
+	R)$ sa représentation régulière. Soit $(e_{g})_{g \in G}$
+	la base usuelle de $\complex[G]$.
+
+	Soient les représentations irréductibles $(E_{1},
+	\rho_{1}), \cdots, (E_{n},
+	\rho_{n})$ et les naturels non nuls $m_{1}, \cdots,
+	m_{n}$ tel que
+	\begin{equation}
+		R = \oplus_{i = 1}^{n} m_{i} \rho_{i}
+	\end{equation}
+	et
+	\begin{equation}
+		\complex[G] = \oplus_{i = 1}^{n} E_{i}
+	\end{equation}.
+
+	Alors $(E_{1}, \rho_{1}), \cdots, (E_{n},
+	\rho_{n})$ sont les représentations irréductibles
+	inéquivalentes de $(G, ., 1_{G})$ et $m_{i} = dim(E_{i})$.
+
+	De plus, on a
+	\begin{equation}
+		\sum_{i = 1}^{n} m_{i}^{2} = \ordergroup{G}
+	\end{equation}
+
+	En d'autres termes, la décomposition de la représentation régulière d'un
+	groupe fini comprend \textbf{toutes} les représentation irréductibles
+	inéquivalentes du groupe fini et la dimension de ces représentations est
+	donnée à travers la multiplicité.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	Commençons par la multiplicité. On sait que
+	\begin{equation}
+		m_{i} = \dotprod{\chi_{\rho_{i}}}{\chi_{R}}_{\complex[G]}
+	\end{equation}
+	En se rappelant que
+	\begin{equation}
+		\chi_{R}(g) = \delta_{1_{G}}^{g} \ordergroup{G}
+	\end{equation}
+	et
+	\begin{equation}
+		\chi_{\rho_{i}}(1_{G}) = dim(E_{i})
+	\end{equation}
+	on a
+	\begin{align}
+		\dotprod{\chi_{\rho_{i}}}{\chi_{R}}_{\complex[G]} & =
+		\frac{1}{\ordergroup{G}} \sum_{g \in G}
+		\conjuguate{\chi_{\rho_{i}}(g)} \chi_{R}(g) \\
+		& = \frac{1}{\ordergroup{G}} \conjuguate{\chi_{\rho_{i}} (1_{G})}
+		\chi_{R}(1_{G}) \\
+		& = dim(E_{i})
+	\end{align}
+
+	Ensuite, pour obtenir l'égalité
+	\begin{equation}
+		\sum_{i = 1}^{n} m_{i}^{2} = \ordergroup{G}
+	\end{equation}
+	nous pouvons regarder le caractère de la représentation régulière. En effet,
+	on a
+	\begin{align}
+		\ordergroup{G} & = \chi_{R}(1_{G}) \\
+		& = \sum_{i = 1}^{n} m_{i} \chi_{\rho_{i}}(1_{G})
+	\end{align}
+	en se rappelant que
+	\begin{equation}
+		R = \oplus_{i = 1}^{n} m_{i} \rho_{i}
+	\end{equation}
+	et que le caractère d'une somme directe de représentations est la somme des
+	caractères des représentations.
+\end{proof}
+\fi
+
+Revenons maintenant à l'espace $\complex[G]$.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	Soit $(E, \rho)$ une représentation de $(G, ., 1_{G})$ et soit $f \in
+	\complex[G]$.
+
+	Posons
+	\begin{equation}
+		\rho_{f} = \sum_{g \in G} f(g) \rho(g)
+	\end{equation}
+	En partiulier, $\rho_{f}$ est une application linéaire allant de $E$ dans
+	$E$.
+	Alors
+	\begin{enumerate}
+		\item Si $f$ est constante par classe, $\rho_{f}$ commute avec $\rho(g)$
+			pour tout $g \in G$.
+		\item Si $f$ est constante par classe et que $(E, \rho)$ est une
+			représentation irréductible, on a
+			\begin{equation}
+				\rho_{f} = \frac{\ordergroup{G}
+				\dotprod{\conjuguate{f}}{\chi_{\rho}}_{\complex[G]}}{\dim{(E)}}
+				Id_{E}
+			\end{equation}
+	\end{enumerate}
+	où $\conjuguate{f} : G \rightarrow \complex$ tel que
+	\begin{equation}
+		\conjuguate{f}(g) = \conjuguate{f(g)}.
+	\end{equation}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	\begin{enumerate}
+		\item On utilise $f(ghg^{-1}) = f(h)$.
+		\item On utilise le lemme de Shur en utilisant le fait que $\rho_{f}$
+			commute avec $\rho(g)$ pour tout $g \in G$.
+			On calcule alors $\lambda$ qui donne ce qui est demandé.
+	\end{enumerate}
+\end{proof}
+\fi
+
+Nous en venons à un théorème important. Nous avons montré, grace au théorème
+\ref{thm:uir_set_orthonormal} que l'ensemble des caractères des représentations
+irréductibles inéquivalentes forment un ensemble orthonormé de $\complex[G]$.
+Nous avons maintenant tous les outils pour montrer que cet ensemble est
+\textbf{une base de $complex[G]$}.
+
+\begin{theorem}
+	\label{uir:uir_set_basis}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	Soient $(E_{1}, \rho_{1}), \cdots, (E_{N}, \rho_{N})$ les représentations
+	irréductibles inéquivalentes de $(G, ., 1_{G})$ et soient $\chi_{1}, \cdots,
+	\chi_{N}$ leur caractère respectif.
+
+	Alors l'ensemble
+	\begin{equation}
+		\GSset{\chi_{1}, \cdots, \chi_{N}}
+	\end{equation}
+	forment une base orthonormé de l'espace de Hilbert $(\complex[G],
+	\dotprod{.}{.}_{\complex[G]})$.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+	Posons $V = \spanspace{\chi_{1}, \cdots, \chi_{N}}$.
+	Pour montrer $V = \Hilbert$, nous allons montrer que $\GSortho{V} =
+	\GSset{0_{\complex[G]}}$.
+
+	Soit $f \in \GSortho{V}$, c'est-à-dire, pour tout $i \in \GSset{1, \cdots,
+	N}$,
+	\begin{equation}
+		\dotprod{f}{\chi_{i}}_{\complex[G]} = 0
+	\end{equation}
+\end{proof}
+\fi
+
+On en déduit le corollaire important suivant:
+
+% Etudier les groupes qui ont le même nombre de sous-groupes normaux ?
+\begin{corollary}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	Soient $(H_{1}, ., 1_{G}), \cdots, (H_{M}, ., 1_{G})$ les sous-groupes normaux
+	de $(G, ., 1_{G})$ et soient $(E_{1}, \rho_{1}), \cdots, (E_{N}, \rho_{N})$
+	les représentations irréductibles et inéquivalentes de $(G, ., 1_{G})$.
+
+	Alors, $N = M$.
+
+	En d'autres termes, le nombre de représentations irréductibles
+	inéquivalentes d'un groupe fini est le même que le nombre de sous-groupes
+	normaux de ce groupe.
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Nous en venons aux relations de complétude des représentations irréductibles
+inéquivalentes d'un groupe fini.
+
+\begin{proposition}
+	Soit $(G, ., 1_{G})$ un groupe fini.
+
+	Soient $(E_{1}, \rho_{1}), \cdots, (E_{N}, \rho_{N})$ les représentations
+	irréductibles inéquivalentes de $(G, ., 1_{G})$ et soient $\chi_{1}, \cdots,
+	\chi_{N}$ leur caractère respectif.
+
+	Soient $(H_{1}, ., 1_{G}), \cdots, (H_{N}, ., 1_{G})$ les sous-groupes normaux
+	de $(G, ., 1_{G})$.
+
+	Soient $g, g' \in G$.
+
+	Alors, on a
+	\begin{enumerate}
+		\item Si $gH \neq g'H$, alors
+			\begin{equation}
+				\sum_{i = 1}^{N} \conjuguate{\chi_{i}(g)} \chi_{i}(g') = 0
+			\end{equation}
+		\item Sinon
+			\begin{equation}
+				\frac{1}{\ordergroup{G}} \sum_{i = 1}^{N}
+				\conjuguate{\chi_{i}(g)} \chi_{i}(g') =
+				\frac{1}{\ordergroup{H_{g}}}
+			\end{equation}
+			où $H_{g}$ est le sous-groupe normal contenant les éléments $g$ et
+			$g'$.
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Remarquons que la deuxième équation donne
+\begin{equation}
+	\frac{1}{\ordergroup{G}} \sum_{i = 1}^{N} \norm{\chi_{i}(g)}^{2} =
+	\frac{1}{\ordergroup{H_{g}}}
+\end{equation}
